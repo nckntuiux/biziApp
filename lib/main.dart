@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
-import 'res/styles.dart';
-import 'res/strings.dart';
+import 'assets/styles.dart';
+import 'assets/strings.dart';
 
 import 'view/home.dart';
 

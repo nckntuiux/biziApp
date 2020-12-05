@@ -17,6 +17,7 @@ Map<int, Color> whiteRGB0 =
 MaterialColor colorWhite = MaterialColor(0xFFFFFFFF, whiteRGB0);
 
 ThemeData ltxTheme = ThemeData(
+  fontFamily: 'Inter',
   primarySwatch: colorWhite,
   scaffoldBackgroundColor: colorWhite,
   visualDensity: VisualDensity.adaptivePlatformDensity,

@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
     return new AppBar(
       title: new Text("Войти в аккаунт"),
       centerTitle: true,
+      elevation: 0,
     );
   }
 
@@ -135,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _phoneFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Phone number'
+                    labelText: 'Номер Телефона'
                 ),
               ),
             ),
@@ -143,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _nameFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Phone number'
+                    labelText: 'Имя'
                 ),
               ),
             ),
@@ -151,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Password'
+                    labelText: 'Пароль'
                 ),
                 obscureText: true,
               ),
@@ -168,15 +169,15 @@ class _LoginPageState extends State<LoginPage> {
         child: new Column(
           children: <Widget>[
             new RaisedButton(
-              child: new Text('Login'),
+              child: new Text('Войти'),
               onPressed: _loginPressed,
             ),
             new FlatButton(
-              child: new Text('Dont have an account? Tap here to register.'),
+              child: new Text('Нет аккаунта? Зарегистрироваться'),
               onPressed: _formChange,
             ),
             new FlatButton(
-              child: new Text('Forgot Password?'),
+              child: new Text('Забыли пароль?'),
               onPressed: _passwordReset,
             )
           ],
@@ -187,11 +188,11 @@ class _LoginPageState extends State<LoginPage> {
         child: new Column(
           children: <Widget>[
             new RaisedButton(
-              child: new Text('Create an Account'),
+              child: new Text('Создать аккаунт'),
               onPressed: _createAccountPressed,
             ),
             new FlatButton(
-              child: new Text('Have an account? Click here to login.'),
+              child: new Text('Нажмите, чтобы войти в профиль'),
               onPressed: _formChange,
             )
           ],
@@ -212,6 +213,5 @@ class _LoginPageState extends State<LoginPage> {
   void _passwordReset () {
     print("The user wants a password reset request sent to $_email");
   }
-
-
+  
 }
