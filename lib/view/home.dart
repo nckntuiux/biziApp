@@ -7,7 +7,7 @@ import '../assets/strings.dart';
 
 import 'login.dart';
 import 'cart.dart';
-import 'account.dart';
+import 'account/account.dart';
 
 int _selectedBottomIndex = 0;
 

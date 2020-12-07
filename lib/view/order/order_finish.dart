@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ltx_deliver/view/order/order_finish.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
 import '../../assets/styles.dart';
 import '../../assets/strings.dart';
 
-class NewOrderPage extends StatefulWidget {
-  NewOrderPage({Key key, this.title}) : super(key: key);
+class FinishOrderPage extends StatefulWidget {
+  FinishOrderPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _NewOrderPageState createState() => _NewOrderPageState();
+  _FinishOrderPageState createState() => _FinishOrderPageState();
 }
 
-class _NewOrderPageState extends State<NewOrderPage> {
+class _FinishOrderPageState extends State<FinishOrderPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +35,9 @@ class _NewOrderPageState extends State<NewOrderPage> {
                   children: [
                     new Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        new Text("Спасибо за заказ!"),
+                        new Text("Ищем машину для отправки заказа"),
+                        new Divider(),
                         new Text("Склад 1"),
                         new Text("Кантемировская ул., 47А, корп. 2, стр. 6, \nМосква, Россия"),
                         new Text("Получатель: Первышин Михаил Анатольевич"),
@@ -55,7 +57,7 @@ class _NewOrderPageState extends State<NewOrderPage> {
                                 new Row(
                                   children: [
                                     new Text("Сатин Люкс+"),
-                                    new Text("2 шт.",),
+                                    new Text("2 шт."),
                                   ],
                                 )
                               ],
@@ -66,20 +68,13 @@ class _NewOrderPageState extends State<NewOrderPage> {
                   ],
                 ),
               ),
-              new MaterialButton(onPressed: _onButtonPressed, child: Text("Оформить заказ на ХХХ руб."), color: Colors.amber,)
+              //new MaterialButton(onPressed: null, child: Text("Оформить заказ на ХХХ руб."), color: Colors.amber,)
             ],
           ),
 
         ),
         padding: EdgeInsets.all(16.0),
       ),
-    );
-  }
-
-  void _onButtonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FinishOrderPage()),
     );
   }
 }
