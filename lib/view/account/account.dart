@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ltx_deliver/view/account/account_info.dart';
+import 'package:ltx_deliver/view/account/account_edit.dart';
 import 'package:ltx_deliver/view/order/account_orders.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
@@ -42,7 +42,7 @@ class _AccountPageState extends State<AccountPage> {
     setState(() {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => AccountInfoPage()),
+        MaterialPageRoute(builder: (context) => LoginChangePage()),
       );
     });
   }
