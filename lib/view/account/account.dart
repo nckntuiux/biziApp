@@ -20,6 +20,35 @@ class AccountPage extends StatefulWidget {
 
 class _AccountPageState extends State<AccountPage> {
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_rounded)),
+        title: Text('Аккаунт', style: sAppBar,),
+        elevation: 0,
+        brightness: Brightness.light,
+      ),
+      body: Container(
+        child: new ListView(children: [
+          new Column(children: [
+            new Text("Николай Благовестный"),
+            new Text("+7 (999) 999-99-99"),
+          ],),
+          new Divider(),
+          new TextButton(onPressed: _onOrdersItemPressed, child: Text("Мои заказы", style: TextStyle(color: Colors.black)),),
+          new Divider(),
+          new TextButton(onPressed: _onDeliveryItemPressed, child: Text("Адреса доставки", style: TextStyle(color: Colors.black),)),
+          new Divider(),
+          new TextButton(onPressed: _onAccountItemPressed, child: Text("Изменить данные", style: TextStyle(color: Colors.black)),),
+          new Divider(),
+          new TextButton(onPressed: _onLogoutItemPressed, child: Text("Выйти из аккаунта", style: TextStyle(color: Colors.black)),),
+        ]),
+        //alignment: AlignmentDirectional.centerStart,
+      )
+    );
+  }
+
   void _onOrdersItemPressed() {
     setState(() {
       Navigator.push(
@@ -47,30 +76,7 @@ class _AccountPageState extends State<AccountPage> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_rounded)),
-        title: Text('Аккаунт'),
-        elevation: 0,
-        brightness: Brightness.light,
-      ),
-      body: Container(
-        child: new ListView(children: [
-          new Column(children: [
-            new Text("Николай Благовестный"),
-            new Text("+7 (999) 999-99-99"),
-          ],),
-          new Divider(),
-          new TextButton(onPressed: _onOrdersItemPressed, child: Text("Мои заказы", style: TextStyle(color: Colors.black)),),
-          new Divider(),
-          new TextButton(onPressed: _onDeliveryItemPressed, child: Text("Адреса доставки", style: TextStyle(color: Colors.black),)),
-          new Divider(),
-          new TextButton(onPressed: _onAccountItemPressed, child: Text("Изменить данные", style: TextStyle(color: Colors.black)),),
-        ]),
-        //alignment: AlignmentDirectional.centerStart,
-      )
-    );
+  void _onLogoutItemPressed() {
+
   }
 }

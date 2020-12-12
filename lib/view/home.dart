@@ -20,6 +20,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
 
   TabController _tabController;
+  int _currentIndex = 0;
+  final List<Widget> _children = [];
 
   void _onBottomItemTapped(int index) {
     setState(() {
@@ -64,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             elevation: 0.0,
             centerTitle: true,
             leading: Icon(Icons.search),
-            title: Text('Lunatex'),
+            title: Text('Lunatex', style: sAppBar,),
             bottom: TabBar(
                 isScrollable: true,
                 unselectedLabelColor: Colors.black.withOpacity(0.3),
@@ -175,54 +177,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                                   child: new MaterialButton(
                                     onPressed: _onActionLoginItemPressed,
                                     child: Text("15"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    new Divider(),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5"),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("-"),
                                     minWidth: 20,
                                     elevation: 0,
 

@@ -32,7 +32,7 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.close)),
-        title: Text('Корзина'),
+        title: Text('Корзина', style: sAppBar,),
         elevation: 0,
         brightness: Brightness.light,
       ),

@@ -22,3 +22,8 @@ ThemeData ltxTheme = ThemeData(
   scaffoldBackgroundColor: colorWhite,
   visualDensity: VisualDensity.adaptivePlatformDensity,
 );
+
+TextStyle sAppBar = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w900,
+);
