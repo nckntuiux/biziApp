@@ -80,7 +80,6 @@ class _LoginChangePageState extends State<LoginChangePage> {
         child: new Column(
           children: <Widget>[
             _buildTextFields(),
-            _buildButtons(),
           ],
         ),
       ),
@@ -89,9 +88,12 @@ class _LoginChangePageState extends State<LoginChangePage> {
 
   Widget _buildBar(BuildContext context) {
     return new AppBar(
-      title: new Text("Войти в аккаунт"),
+      title: new Text("Изменить данные"),
       centerTitle: true,
       elevation: 0,
+      actions: [
+        new IconButton(icon: Icon(Icons.save), onPressed: _savePressed)
+      ],
       
     );
   }
@@ -147,21 +149,8 @@ class _LoginChangePageState extends State<LoginChangePage> {
     );
   }
 
-  Widget _buildButtons() {
-    return new Container(
-      child: new Column(
-        children: <Widget>[
-          new RaisedButton(
-            child: new Text('Выйти'),
-            onPressed: _unloginPressed,
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _unloginPressed () {
-    print('The user wants to unlogin with $_email and $_password');
+  void _savePressed () {
+    print('The user wants to save credentials with $_email and $_password');
   }
 
   

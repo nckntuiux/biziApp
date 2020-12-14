@@ -27,3 +27,20 @@ TextStyle sAppBar = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.w900,
 );
+
+TextStyle sButton = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle sHeading = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);
+
+TextStyle sAlt = TextStyle(
+  color: Colors.grey[850],
+  fontWeight: FontWeight.w400,
+  fontSize: 14,
+);

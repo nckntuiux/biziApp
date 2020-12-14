@@ -71,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 isScrollable: true,
                 unselectedLabelColor: Colors.black.withOpacity(0.3),
                 indicatorColor: Colors.black,
+                indicatorPadding: EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
                 tabs: [
                   Tab(
                     child: Text('Недавние'),
@@ -134,8 +135,78 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           body: TabBarView(
             children: <Widget>[
               Container(
+                padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: ListView(children: [
+                    Container(
+                      margin: EdgeInsets.all(8.0),
+                      child: new Row(
+                        children: [
+                          new Container(
+                              width: 81,
+                              height: 81,
+                              padding: EdgeInsets.only(right: 15),
+                              //margin: EdgeInsets.only(right: 15),
+                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
+                          new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                                child: new Text("Сатин Люкс+", style: sHeading,),
+                              ),
+                              new Row(
+                                children: [
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("В корзину", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("5", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("15", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                     new Row(
                       children: [
                         new Container(
@@ -147,14 +218,20 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         new Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("Сатин Люкс+", style: sHeading,),
+                            ),
                             new Row(
                               children: [
                                 new Container(
                                   child: new MaterialButton(
                                     onPressed: _onActionLoginItemPressed,
-                                    child: Text("В корзину"),
+                                    child: Text("+"),
                                     minWidth: 20,
                                     elevation: 0,
 
@@ -163,20 +240,13 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("5"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
+                                  child: new Text("5"),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
                                   child: new MaterialButton(
                                     onPressed: _onActionLoginItemPressed,
-                                    child: Text("15"),
+                                    child: Text("-"),
                                     minWidth: 20,
                                     elevation: 0,
 
@@ -315,8 +385,15 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         new Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
+                            Padding(
+
+                              padding: const EdgeInsets.only(bottom: 0),
+                              child: new Text("2499 ₽ | Полутороспальный (1.5)",),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 0),
+                              child: new Text("Сатин Люкс+"),
+                            ),
                             new Row(
                               children: [
                                 new Container(
