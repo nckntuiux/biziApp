@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ltx_deliver/view/search.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
@@ -49,6 +50,15 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     });
   }
 
+  void _onSearchItemPressed() {
+    setState(() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SearchPage()),
+      );
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           appBar: AppBar(
             elevation: 0.0,
             centerTitle: true,
-            leading: Icon(Icons.search),
+            leading: IconButton(icon: Icon(Icons.search), onPressed: _onSearchItemPressed,),
             title: Text('Lunatex', style: sAppBar,),
             bottom: TabBar(
                 isScrollable: true,
@@ -152,11 +162,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                                padding: const EdgeInsets.only(bottom: 6.0,),
                                 child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                                padding: const EdgeInsets.only(bottom: 6.0,),
                                 child: new Text("Сатин Люкс+", style: sHeading,),
                               ),
                               new Row(
@@ -172,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                                         color: Colors.grey[200],
                                       ),
                                     ),
-                                    margin: EdgeInsets.all(4.0),
+                                    //margin: EdgeInsets.all(4.0),
                                   ),
                                   new Container(
                                     child: ClipRRect(
@@ -207,6 +217,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         ],
                       ),
                     ),
+                    new Divider(color: Colors.white,),
                     new Row(
                       children: [
                         new Container(
@@ -229,136 +240,33 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                             new Row(
                               children: [
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("+", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new Text("5"),
+                                  child: new Text("5", style: sButton,),
+                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("-"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: ListView(children: [
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("В корзину"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("5"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("15"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    new Divider(),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5"),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("-"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("-", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
@@ -374,6 +282,76 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               Container(
                 child: Center(
                   child: ListView(children: [
+                    Container(
+                      margin: EdgeInsets.all(8.0),
+                      child: new Row(
+                        children: [
+                          new Container(
+                              width: 81,
+                              height: 81,
+                              padding: EdgeInsets.only(right: 15),
+                              //margin: EdgeInsets.only(right: 15),
+                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
+                          new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("Сатин Люкс+", style: sHeading,),
+                              ),
+                              new Row(
+                                children: [
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("В корзину", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    //margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("5", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("15", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    new Divider(color: Colors.white,),
                     new Row(
                       children: [
                         new Container(
@@ -386,94 +364,43 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-
-                              padding: const EdgeInsets.only(bottom: 0),
-                              child: new Text("2499 ₽ | Полутороспальный (1.5)",),
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 0),
-                              child: new Text("Сатин Люкс+"),
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("Сатин Люкс+", style: sHeading,),
                             ),
                             new Row(
                               children: [
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("В корзину"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("+", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("5"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
+                                  child: new Text("5", style: sButton,),
+                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("15"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    new Divider(),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5"),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("-"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("-", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
@@ -489,61 +416,76 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               Container(
                 child: Center(
                   child: ListView(children: [
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("В корзину"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                    Container(
+                      margin: EdgeInsets.all(8.0),
+                      child: new Row(
+                        children: [
+                          new Container(
+                              width: 81,
+                              height: 81,
+                              padding: EdgeInsets.only(right: 15),
+                              //margin: EdgeInsets.only(right: 15),
+                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
+                          new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("Сатин Люкс+", style: sHeading,),
+                              ),
+                              new Row(
+                                children: [
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("В корзину", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    //margin: EdgeInsets.all(4.0),
                                   ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("5"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("5", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
                                   ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("15"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("15", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
                                   ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    new Divider(),
+                    new Divider(color: Colors.white,),
                     new Row(
                       children: [
                         new Container(
@@ -555,33 +497,44 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         new Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("Сатин Люкс+", style: sHeading,),
+                            ),
                             new Row(
                               children: [
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("+", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new Text("5"),
+                                  child: new Text("5", style: sButton,),
+                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("-"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("-", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
@@ -597,6 +550,76 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               Container(
                 child: Center(
                   child: ListView(children: [
+                    Container(
+                      margin: EdgeInsets.all(8.0),
+                      child: new Row(
+                        children: [
+                          new Container(
+                              width: 81,
+                              height: 81,
+                              padding: EdgeInsets.only(right: 15),
+                              //margin: EdgeInsets.only(right: 15),
+                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
+                          new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("Сатин Люкс+", style: sHeading,),
+                              ),
+                              new Row(
+                                children: [
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("В корзину", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    //margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("5", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("15", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    new Divider(color: Colors.white,),
                     new Row(
                       children: [
                         new Container(
@@ -608,40 +631,44 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         new Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("Сатин Люкс+", style: sHeading,),
+                            ),
                             new Row(
                               children: [
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("В корзину"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("+", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("5"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
+                                  child: new Text("5", style: sButton,),
+                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("15"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("-", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
@@ -651,7 +678,82 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         ),
                       ],
                     ),
-                    new Divider(),
+                  ]),
+                ),
+              ),
+              Container(
+                child: Center(
+                  child: ListView(children: [
+                    Container(
+                      margin: EdgeInsets.all(8.0),
+                      child: new Row(
+                        children: [
+                          new Container(
+                              width: 81,
+                              height: 81,
+                              padding: EdgeInsets.only(right: 15),
+                              //margin: EdgeInsets.only(right: 15),
+                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
+                          new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0,),
+                                child: new Text("Сатин Люкс+", style: sHeading,),
+                              ),
+                              new Row(
+                                children: [
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("В корзину", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    //margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("5", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                  new Container(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                      child: new FlatButton(
+                                        onPressed: _onActionLoginItemPressed,
+                                        child: Text("15", style: sButton),
+                                        minWidth: 54,
+                                        height: 48,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(4.0),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    new Divider(color: Colors.white,),
                     new Row(
                       children: [
                         new Container(
@@ -663,33 +765,44 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         new Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
+                              child: new Text("Сатин Люкс+", style: sHeading,),
+                            ),
                             new Row(
                               children: [
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("+", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new Text("5"),
+                                  child: new Text("5", style: sButton,),
+                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),
                                 new Container(
-                                  child: new MaterialButton(
-                                    onPressed: _onActionLoginItemPressed,
-                                    child: Text("-"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                    child: new FlatButton(
+                                      onPressed: _onActionLoginItemPressed,
+                                      child: Text("-", style: sButton,),
+                                      minWidth: 54,
+                                      height: 48,
+                                      color: Colors.grey[200],
+                                    ),
                                   ),
                                   margin: EdgeInsets.only(left: 4.0),
                                 ),

@@ -36,7 +36,7 @@ TextStyle sButton = TextStyle(
 TextStyle sHeading = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.w400,
-  fontSize: 18,
+  fontSize: 20,
 );
 
 TextStyle sAlt = TextStyle(
