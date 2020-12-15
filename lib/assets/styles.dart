@@ -102,8 +102,8 @@ TextStyle sAlt = TextStyle(
 
 TextStyle sHeadingFinish = TextStyle(
   color: Colors.black,
-  fontWeight: FontWeight.w200,
-  fontSize: 36,
+  fontWeight: FontWeight.w300,
+  fontSize: 32,
 );
 
 TextStyle sAltFinish = TextStyle(

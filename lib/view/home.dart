@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ltx_deliver/view/launch/setbudget.dart';
 import 'package:ltx_deliver/view/search.dart';
 import 'package:ltx_deliver/items.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -49,6 +50,15 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    });
+  }
+
+  void _onActionSetBudgetItemPressed() {
+    setState(() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SetBudgetPage()),
       );
     });
   }
@@ -126,6 +136,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 padding: const EdgeInsets.only(right: 16.0),
                 child: new IconButton(icon: Icon(Icons.person_outline), onPressed: _onActionLoginItemPressed),
               ),
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: new IconButton(icon: Icon(Icons.attach_money_rounded), onPressed: _onActionSetBudgetItemPressed),
+              ),
             ],
           ),
           bottomNavigationBar: Container(
@@ -140,7 +154,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             child: ClipRRect(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
               child: SizedBox(
-                height: 64,
                 child: BottomNavigationBar(
                   iconSize: 32.0,
                   items: const <BottomNavigationBarItem>[

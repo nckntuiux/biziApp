@@ -32,8 +32,14 @@ class _AccountPageState extends State<AccountPage> {
       body: Container(
         child: new ListView(children: [
           new Column(children: [
-            new Text("Николай Благовестный"),
-            new Text("+7 (999) 999-99-99"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: new Text("Николай Благовестный", style: sHeadingFinish,),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: new Text("+7 (999) 999-99-99", style: sAltFinish,),
+            ),
           ],),
           new Divider(),
           new TextButton(onPressed: _onOrdersItemPressed, child: Text("Мои заказы", style: TextStyle(color: Colors.black)),),

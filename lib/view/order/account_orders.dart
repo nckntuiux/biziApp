@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ltx_deliver/assets/styles.dart';
 import 'package:ltx_deliver/items.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
@@ -24,30 +25,34 @@ class _AccountOrdersPageState extends State<AccountOrdersPage> {
         elevation: 0,
         brightness: Brightness.light,
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Expanded(
-          child: Column(
-            children: [
-              new Card(
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  children: [
-                    new Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        new Text("Заказ № 23457-001"),
-                        new Text("Доставлен в 23:59 12 декабря 2077 года"),
-                        new Divider(),
-                        new AddressTextItem(),
-                        new ListItemCompact()
-                      ],),
-                  ],
+          child: ListView(
+            scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  child: new Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          new Text("Заказ № 23457-001", style: sHeadingFinish,),
+                          new Text("Доставлен в 23:59 12 декабря 2077 года", style: sAltFinish,),
+                          new Divider(),
+                          new AddressTextItem(),
+                          new ListItemCompact()
+                        ],),
+                    ),
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
-        ),
       ),
-    );
-  }
+      );
+    }
 }

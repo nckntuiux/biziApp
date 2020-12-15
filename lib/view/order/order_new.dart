@@ -18,8 +18,8 @@ class NewOrderPage extends StatefulWidget {
 
 class _NewOrderPageState extends State<NewOrderPage> {
 
-  String _finishHeader = "";
-  String _finishAlt = "";
+  String _finishHeader = "Проверьте адрес";
+  String _finishAlt = "Нажмите для выбора правильного";
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class _NewOrderPageState extends State<NewOrderPage> {
   void _onButtonPressed() {
     setState(() {
       _finishHeader = "Cпасибо за заказ!";
-      _finishAlt = "Ищем водителя для доставки вашего заказа";
+      _finishAlt = "Ищем водителя поблизости";
     });
   }
 

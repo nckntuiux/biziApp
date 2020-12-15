@@ -200,17 +200,35 @@ class AddressItemState extends State<AddressItem> {
 
   @override
   Widget build(BuildContext context) {
-    return new Card(
-      child: new Column(
-        children: [
-          new AddressTextItem(),
-          new Row(
+    return ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+      child: new Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: new Column(
             children: [
-              new MaterialButton(onPressed: _onEditPressed, child: new Text("Изменить"),),
-              new MaterialButton(onPressed: _onDefaultPressed, child: new Text(btnName),),
+              new AddressTextItem(),
+              new Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                      child: new FlatButton(onPressed: _onEditPressed, child: new Text("Изменить", style: sButton,), color: Colors.grey[200], height: 48,),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                      child: new FlatButton(onPressed: _onDefaultPressed, child: new Text(btnName, style: sButton,), color: Colors.grey[200], height: 48,),
+                    ),
+                  ),
+                ],
+              )
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
@@ -220,6 +238,7 @@ class AddressTextItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         new Text("Офис (Основной адрес)", style: sHeading,),
         new Text("Кантемировская ул., 47А, корп. 2, стр. 6,\nМосква, Россия\nПолучатель: Первышин Михаил Анатольевич \n+7 (904) 371-48-57"),
