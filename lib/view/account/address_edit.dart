@@ -122,60 +122,86 @@ class _AddressChangePageState extends State<AddressChangePage> {
 
   Widget _buildTextFields() {
     return new Container(
-      child: new Column(
-        children: <Widget>[
-          new Container(
-            child: new TextField(
-              controller: _countryFilter,
-              decoration: new InputDecoration(
-                labelText: 'Область',
+      child: Expanded(
+        child: new ListView(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+
+                child: new TextField(
+                  controller: _countryFilter,
+                  decoration: new InputDecoration(
+                    hintText: 'Область',
+                  ),
+                ),
               ),
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _cityFilter,
-              decoration: new InputDecoration(
-                  labelText: 'Город'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _cityFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'Город'
+                  ),
+                ),
               ),
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _streetFilter,
-              decoration: new InputDecoration(
-                  labelText: 'Улица'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _streetFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'Улица'
+                  ),
+                ),
               ),
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _houseFilter,
-              decoration: new InputDecoration(
-                  labelText: 'Дом'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _houseFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'Дом'
+                  ),
+                  obscureText: true,
+                ),
               ),
-              obscureText: true,
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _nameFilter,
-              decoration: new InputDecoration(
-                  labelText: 'ФИО контактного лицы'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _nameFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'ФИО контактного лицы'
+                  ),
+                  obscureText: true,
+                ),
               ),
-              obscureText: true,
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _phoneFilter,
-              decoration: new InputDecoration(
-                  labelText: 'Телефон контактного лица'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _phoneFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'Телефон контактного лица'
+                  ),
+                  obscureText: true,
+                ),
               ),
-              obscureText: true,
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

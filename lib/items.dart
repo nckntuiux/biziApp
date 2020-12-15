@@ -163,11 +163,11 @@ class ListItemCompact extends StatelessWidget {
         new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            new Text("2499 ₽ | Полутороспальный (1.5)",),
+            new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
             new Row(
               children: [
-                new Text("Сатин Люкс+"),
-                new Text("2 шт.",),
+                new Text("Сатин Люкс+", style: sHeading,),
+                new Text("2 шт.", style: sHeadingCompact),
               ],
             )
           ],
@@ -221,7 +221,7 @@ class AddressTextItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Column(
       children: [
-        new Text("Офис (Основной адрес)", style: TextStyle(fontWeight: FontWeight.w800),),
+        new Text("Офис (Основной адрес)", style: sHeading,),
         new Text("Кантемировская ул., 47А, корп. 2, стр. 6,\nМосква, Россия\nПолучатель: Первышин Михаил Анатольевич \n+7 (904) 371-48-57"),
       ],
     );

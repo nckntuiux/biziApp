@@ -100,51 +100,73 @@ class _LoginChangePageState extends State<LoginChangePage> {
 
   Widget _buildTextFields() {
     return new Container(
-      child: new Column(
-        children: <Widget>[
-          new Container(
-            child: new TextField(
-              controller: _emailFilter,
-              decoration: new InputDecoration(
-                labelText: 'Email',
+      child: Expanded(
+        child: new ListView(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+
+                child: new TextField(
+                  controller: _emailFilter,
+                  decoration: new InputDecoration(
+                    hintText: 'Email',
+                  ),
+                ),
               ),
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _phoneFilter,
-              decoration: new InputDecoration(
-                  labelText: 'Номер Телефона'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _phoneFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'Номер Телефона'
+                  ),
+                ),
               ),
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _nameFilter,
-              decoration: new InputDecoration(
-                  labelText: 'Имя'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _nameFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'Имя'
+                  ),
+                ),
               ),
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _passwordFilter,
-              decoration: new InputDecoration(
-                  labelText: 'Пароль'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _passwordFilter,
+                  decoration: new InputDecoration(
+                      hintText: 'Пароль'
+                  ),
+                  obscureText: true,
+                ),
               ),
-              obscureText: true,
             ),
-          ),
-          new Container(
-            child: new TextField(
-              controller: _passwordFilter,
-              decoration: new InputDecoration(
-                  labelText: ' Повторить пароль'
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: new TextField(
+                  controller: _passwordFilter,
+                  decoration: new InputDecoration(
+                      hintText: ' Повторить пароль'
+                  ),
+                  obscureText: true,
+                ),
               ),
-              obscureText: true,
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

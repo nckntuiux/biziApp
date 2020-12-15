@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ltx_deliver/view/order/order_finish.dart';
 import 'package:ltx_deliver/items.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
@@ -19,12 +18,15 @@ class NewOrderPage extends StatefulWidget {
 
 class _NewOrderPageState extends State<NewOrderPage> {
 
+  String _finishHeader = "";
+  String _finishAlt = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.close)),
-        title: Text('Создать заказ'),
+        title: Text('Создать заказ', style: sAppBarText,),
         elevation: 0,
         brightness: Brightness.light,
       ),
@@ -35,14 +37,21 @@ class _NewOrderPageState extends State<NewOrderPage> {
               new Expanded(
                 child: ListView(
                   children: [
-                    new Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        new Text("Склад 1"),
-                        new Text("Кантемировская ул., 47А, корп. 2, стр. 6, \nМосква, Россия"),
-                        new Text("Получатель: Первышин Михаил Анатольевич"),
-                        new Text("+7 (904) 371-48-57"),
-                        new AddressItem(),
-                      ],),
+                    Center(
+                      child: new Column(crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          new Text(_finishHeader, style: sHeadingFinish,),
+                          new Text(_finishAlt, style: sAltFinish,),
+                          new Divider(color: colorWhite, height: 80,),
+                          new Card(
+                            child: Container(
+                              width: double.infinity,
+                              child: new AddressTextItem(),
+                              padding: EdgeInsets.all(8.0),
+                            ),
+                          ),
+                        ],),
+                    ),
                   ],
                 ),
               ),
@@ -52,7 +61,7 @@ class _NewOrderPageState extends State<NewOrderPage> {
                   height: 48,
                   minWidth: double.infinity,
                   onPressed: _onButtonPressed,
-                  child: Text("Оформить заказ на ХХХ руб."),
+                  child: Text("Оформить заказ на ХХХ руб.", style: sButton,),
                   color: Colors.amber,
                 ),
               )
@@ -66,9 +75,11 @@ class _NewOrderPageState extends State<NewOrderPage> {
   }
 
   void _onButtonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FinishOrderPage()),
-    );
+    setState(() {
+      _finishHeader = "Cпасибо за заказ!";
+      _finishAlt = "Ищем водителя для доставки вашего заказа";
+    });
   }
+
+
 }

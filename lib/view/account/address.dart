@@ -34,13 +34,11 @@ class _AddressPageState extends State<AddressPage> {
       body: Container(
         child: new ListView(
             children: [
-          new Card(
-            child: new Column(
-              children: [
-                new AddressItem(),
-              ],
-            ),
-          ),
+              new Column(
+                children: [
+                  new AddressItem(),
+                ],
+              ),
         ]),
         //alignment: AlignmentDirectional.centerStart,
       )

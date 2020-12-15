@@ -98,73 +98,94 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildTextFields() {
     if (_form == FormType.login) {
-      return new Container(
-        child: new Column(
-          children: <Widget>[
-            new Container(
-              child: new TextField(
-                controller: _emailFilter,
-                decoration: new InputDecoration(
-                    labelText: 'Email',
-                    fillColor: Colors.white,
-                    border: new OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(12.0),
-                      borderSide: new BorderSide(color: colorBrand),
+      return Expanded(
+        child: new Container(
+          child: new ListView(
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new Container(
+                  child: new TextField(
+                    controller: _emailFilter,
+                    decoration: new InputDecoration(
+                        hintText: 'Email',
                     ),
-                  focusColor: Colors.black,
+                  ),
                 ),
               ),
-            ),
-            new Container(
-              child: new TextField(
-                controller: _passwordFilter,
-                decoration: new InputDecoration(
-                    labelText: 'Пароль'
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new Container(
+                  margin: const EdgeInsets.only(top: 16.0),
+                  child: new TextField(
+                    controller: _passwordFilter,
+                    decoration: new InputDecoration(
+                        hintText: 'Пароль'
+                    ),
+                    obscureText: true,
+                  ),
                 ),
-                obscureText: true,
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       );
     } else {
-      return new Container(
-        child: new Column(
-          children: <Widget>[
-            new Container(
-              child: new TextField(
-                controller: _emailFilter,
-                decoration: new InputDecoration(
-                  labelText: 'Email',
+      return Expanded(
+        child: new Container(
+          child: new ListView(
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new Container(
+                  margin: const EdgeInsets.only(top: 16.0),
+                  child: new TextField(
+                    controller: _emailFilter,
+                    decoration: new InputDecoration(
+                      hintText: 'Email',
+                    ),
+                  ),
                 ),
               ),
-            ),
-            new Container(
-              child: new TextField(
-                controller: _phoneFilter,
-                decoration: new InputDecoration(
-                    labelText: 'Номер Телефона'
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new Container(
+                  margin: const EdgeInsets.only(top: 16.0),
+                  child: new TextField(
+                    controller: _phoneFilter,
+                    decoration: new InputDecoration(
+                        hintText: 'Номер Телефона'
+                    ),
+                  ),
                 ),
               ),
-            ),
-            new Container(
-              child: new TextField(
-                controller: _nameFilter,
-                decoration: new InputDecoration(
-                    labelText: 'Имя'
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new Container(
+                  margin: const EdgeInsets.only(top: 16.0),
+                  child: new TextField(
+                    controller: _nameFilter,
+                    decoration: new InputDecoration(
+                        hintText: 'Имя'
+                    ),
+                  ),
                 ),
               ),
-            ),
-            new Container(
-              child: new TextField(
-                controller: _passwordFilter,
-                decoration: new InputDecoration(
-                    labelText: 'Пароль'
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new Container(
+                  margin: const EdgeInsets.only(top: 16.0),
+                  child: new TextField(
+                    controller: _passwordFilter,
+                    decoration: new InputDecoration(
+                        hintText: 'Пароль'
+                    ),
+                    obscureText: true,
+                  ),
                 ),
-                obscureText: true,
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       );
     }
@@ -175,9 +196,17 @@ class _LoginPageState extends State<LoginPage> {
       return new Container(
         child: new Column(
           children: <Widget>[
-            new RaisedButton(
-              child: new Text('Войти'),
-              onPressed: _loginPressed,
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new FlatButton(
+                  onPressed: _loginPressed,
+                  height: 48,
+                  minWidth: double.infinity,
+                  child: Text("Войти", style: sButton,),
+                  color: Colors.amber,),
+              ),
             ),
             new FlatButton(
               child: new Text('Нет аккаунта? Зарегистрироваться'),
@@ -194,9 +223,17 @@ class _LoginPageState extends State<LoginPage> {
       return new Container(
         child: new Column(
           children: <Widget>[
-            new RaisedButton(
-              child: new Text('Создать аккаунт'),
-              onPressed: _createAccountPressed,
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: new FlatButton(
+                  onPressed: _createAccountPressed,
+                  height: 48,
+                  minWidth: double.infinity,
+                  child: Text("Создать аккаунт", style: sButton,),
+                  color: Colors.amber,),
+              ),
             ),
             new FlatButton(
               child: new Text('Нажмите, чтобы войти в профиль'),

@@ -38,9 +38,26 @@ ThemeData ltxTheme = ThemeData(
   fontFamily: 'Inter',
   accentColor: Colors.black,
   primarySwatch: colorWhite,
+  hintColor: Colors.black,
   scaffoldBackgroundColor: colorWhite,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   appBarTheme: sAppBar,
+  inputDecorationTheme: InputDecorationTheme(
+    contentPadding: const EdgeInsets.all(18.0),
+    fillColor: Colors.grey[200],
+    filled: true,
+    focusColor: colorWhite,
+    alignLabelWithHint: false,
+    enabledBorder: new OutlineInputBorder(
+      borderRadius: new BorderRadius.circular(12.0),
+      borderSide: new BorderSide(color: colorWhite, width: 0.0),
+    ),
+    labelStyle: TextStyle(
+        color: Colors.black,
+        //fontSize: 24.0
+    ),
+
+  ),
 );
 
 AppBarTheme sAppBar = AppBarTheme(
@@ -71,8 +88,26 @@ TextStyle sHeading = TextStyle(
   fontSize: 18,
 );
 
+TextStyle sHeadingCompact = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 14,
+);
+
 TextStyle sAlt = TextStyle(
   color: Colors.grey[850],
   fontWeight: FontWeight.w400,
   fontSize: 14,
+);
+
+TextStyle sHeadingFinish = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w200,
+  fontSize: 36,
+);
+
+TextStyle sAltFinish = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
 );
