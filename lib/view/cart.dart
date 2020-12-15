@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ltx_deliver/view/launch/login.dart';
+import 'package:ltx_deliver/items.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
@@ -32,117 +34,36 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.close)),
-        title: Text('Корзина', style: sAppBar,),
+        title: Text('Корзина', style: sAppBarText,),
         elevation: 0,
         brightness: Brightness.light,
       ),
       body: Center(
         child: SafeArea(
-          child: Column(
-            children: [
-              new Container(
-                child: Expanded(
-                  child: ListView(children: [
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: null,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5"),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: null,
-                                    child: Text("-"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    new Divider(),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            new Text("2499 ₽ | Полутороспальный (1.5)",),
-                            new Text("Сатин Люкс+"),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: null,
-                                    child: Text("+"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5"),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new MaterialButton(
-                                    onPressed: null,
-                                    child: Text("-"),
-                                    minWidth: 20,
-                                    elevation: 0,
-
-                                    color: Colors.grey[200],
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                new Container(
+                  child: Expanded(
+                    child: ListView(children: [
+                      new ListItem(),
+                      new Divider(color: Colors.white,),
+                      new ListItem(),
+                    ]),
+                  ),
                 ),
-              ),
-              new MaterialButton(onPressed: _onButtonPressed, child: Text("Оформить заказ на ХХХ руб."), color: Colors.amber,)
-            ],
+                ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  child: new FlatButton(
+                    onPressed: _onButtonPressed,
+                    height: 48,
+                    minWidth: double.infinity,
+                    child: Text("Оформить заказ на ХХХ руб.", style: sButton,),
+                    color: Colors.amber,),
+                )
+              ],
+            ),
           ),
         ),
       ),

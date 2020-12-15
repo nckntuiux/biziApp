@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ltx_deliver/assets/styles.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -104,7 +105,13 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _emailFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Email'
+                    labelText: 'Email',
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(12.0),
+                      borderSide: new BorderSide(color: colorBrand),
+                    ),
+                  focusColor: Colors.black,
                 ),
               ),
             ),
@@ -128,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _emailFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Email'
+                  labelText: 'Email',
                 ),
               ),
             ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ltx_deliver/view/search.dart';
+import 'package:ltx_deliver/items.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
 import '../assets/styles.dart';
 import '../assets/strings.dart';
 
-import 'login.dart';
+import 'launch/login.dart';
 import 'cart.dart';
 import 'account/account.dart';
 
@@ -20,6 +22,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
 
+  RefreshController _refreshController = RefreshController(initialRefresh: false);
   TabController _tabController;
   int _currentIndex = 0;
   final List<Widget> _children = [];
@@ -66,6 +69,25 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     _onBottomItemTapped(0);
   }
 
+  void _onRefresh() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use refreshFailed()
+    _refreshController.refreshCompleted();
+  }
+
+  void _onLoading() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use loadFailed(),if no data return,use LoadNodata()
+
+    if(mounted)
+      setState(() {
+
+      });
+    _refreshController.loadComplete();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -76,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             elevation: 0.0,
             centerTitle: true,
             leading: IconButton(icon: Icon(Icons.search), onPressed: _onSearchItemPressed,),
-            title: Text('Lunatex', style: sAppBar,),
+            title: Text('Lunatex', style: sAppBarText,),
             bottom: TabBar(
                 isScrollable: true,
                 unselectedLabelColor: Colors.black.withOpacity(0.3),
@@ -117,28 +139,32 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
-              child: BottomNavigationBar(
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Главная',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.shopping_cart),
-                    label: 'Корзина',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    label: 'Профиль',
-                  ),
-                ],
-                currentIndex: _selectedBottomIndex,
-                showSelectedLabels: true,
-                showUnselectedLabels: true,
-                backgroundColor: Colors.white,
-                selectedItemColor: Colors.amber[800],
-                unselectedItemColor: Colors.black,
-                onTap: _onBottomItemTapped,
+              child: SizedBox(
+                height: 64,
+                child: BottomNavigationBar(
+                  iconSize: 32.0,
+                  items: const <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home),
+                      label: 'Главная',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.shopping_cart),
+                      label: 'Корзина',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.person),
+                      label: 'Профиль',
+                    ),
+                  ],
+                  currentIndex: _selectedBottomIndex,
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  backgroundColor: Colors.white,
+                  selectedItemColor: brandRGB0[900],
+                  unselectedItemColor: Colors.black,
+                  onTap: _onBottomItemTapped,
+                ),
               ),
             ),
           ),
@@ -147,672 +173,82 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Center(
-                  child: ListView(children: [
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      child: new Row(
-                        children: [
-                          new Container(
-                              width: 81,
-                              height: 81,
-                              padding: EdgeInsets.only(right: 15),
-                              //margin: EdgeInsets.only(right: 15),
-                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                          new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("Сатин Люкс+", style: sHeading,),
-                              ),
-                              new Row(
-                                children: [
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("В корзину", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    //margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("5", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("15", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    new Divider(color: Colors.white,),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("Сатин Люкс+", style: sHeading,),
-                            ),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("+", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5", style: sButton,),
-                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("-", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
+                  child: SmartRefresher(
+                    controller: _refreshController,
+                    enablePullUp: true,
+                    header: ClassicHeader(),
+                    onRefresh: _onRefresh,
+                    onLoading: _onLoading,
+                    child: ListView(children: [
+                      new ListItem(),
+                      new Divider(color: Colors.white,),
+                      new ListItem()
+                    ]),
+                  ),
                 ),
               ),
               Container(
                 child: Center(
-                  child: ListView(children: [
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      child: new Row(
-                        children: [
-                          new Container(
-                              width: 81,
-                              height: 81,
-                              padding: EdgeInsets.only(right: 15),
-                              //margin: EdgeInsets.only(right: 15),
-                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                          new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("Сатин Люкс+", style: sHeading,),
-                              ),
-                              new Row(
-                                children: [
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("В корзину", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    //margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("5", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("15", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    new Divider(color: Colors.white,),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("Сатин Люкс+", style: sHeading,),
-                            ),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("+", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5", style: sButton,),
-                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("-", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
+                  child: SmartRefresher(
+                    controller: _refreshController,
+                    enablePullUp: true,
+                    header: ClassicHeader(),
+                    onRefresh: _onRefresh,
+                    onLoading: _onLoading,
+                    child: ListView(children: [
+                      new ListItem(),
+                      new Divider(color: Colors.white,),
+                      new ListItem()
+                    ]),
+                  ),
                 ),
               ),
               Container(
                 child: Center(
-                  child: ListView(children: [
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      child: new Row(
-                        children: [
-                          new Container(
-                              width: 81,
-                              height: 81,
-                              padding: EdgeInsets.only(right: 15),
-                              //margin: EdgeInsets.only(right: 15),
-                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                          new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("Сатин Люкс+", style: sHeading,),
-                              ),
-                              new Row(
-                                children: [
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("В корзину", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    //margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("5", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("15", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    new Divider(color: Colors.white,),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("Сатин Люкс+", style: sHeading,),
-                            ),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("+", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5", style: sButton,),
-                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("-", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
+                  child: SmartRefresher(
+                    controller: _refreshController,
+                    enablePullUp: true,
+                    header: ClassicHeader(),
+                    onRefresh: _onRefresh,
+                    onLoading: _onLoading,
+                    child: ListView(children: [
+                      new ListItem(),
+                      new Divider(color: Colors.white,),
+                      new ListItem()
+                    ]),
+                  ),
                 ),
               ),
               Container(
                 child: Center(
-                  child: ListView(children: [
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      child: new Row(
-                        children: [
-                          new Container(
-                              width: 81,
-                              height: 81,
-                              padding: EdgeInsets.only(right: 15),
-                              //margin: EdgeInsets.only(right: 15),
-                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                          new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("Сатин Люкс+", style: sHeading,),
-                              ),
-                              new Row(
-                                children: [
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("В корзину", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    //margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("5", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("15", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    new Divider(color: Colors.white,),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("Сатин Люкс+", style: sHeading,),
-                            ),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("+", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5", style: sButton,),
-                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("-", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
+                  child: SmartRefresher(
+                    controller: _refreshController,
+                    enablePullUp: true,
+                    header: ClassicHeader(),
+                    onRefresh: _onRefresh,
+                    onLoading: _onLoading,
+                    child: ListView(children: [
+                      new ListItem(),
+                      new Divider(color: Colors.white,),
+                      new ListItem()
+                    ]),
+                  ),
                 ),
               ),
               Container(
                 child: Center(
-                  child: ListView(children: [
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      child: new Row(
-                        children: [
-                          new Container(
-                              width: 81,
-                              height: 81,
-                              padding: EdgeInsets.only(right: 15),
-                              //margin: EdgeInsets.only(right: 15),
-                              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                          new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0,),
-                                child: new Text("Сатин Люкс+", style: sHeading,),
-                              ),
-                              new Row(
-                                children: [
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("В корзину", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    //margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("5", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                  new Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                      child: new FlatButton(
-                                        onPressed: _onActionLoginItemPressed,
-                                        child: Text("15", style: sButton),
-                                        minWidth: 54,
-                                        height: 48,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.all(4.0),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    new Divider(color: Colors.white,),
-                    new Row(
-                      children: [
-                        new Container(
-                            width: 81,
-                            height: 81,
-                            padding: EdgeInsets.only(right: 15),
-                            //margin: EdgeInsets.only(right: 15),
-                            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
-                        new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0, left: 4.0),
-                              child: new Text("Сатин Люкс+", style: sHeading,),
-                            ),
-                            new Row(
-                              children: [
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("+", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: new Text("5", style: sButton,),
-                                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                                new Container(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                                    child: new FlatButton(
-                                      onPressed: _onActionLoginItemPressed,
-                                      child: Text("-", style: sButton,),
-                                      minWidth: 54,
-                                      height: 48,
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.only(left: 4.0),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ]),
+                  child: SmartRefresher(
+                    controller: _refreshController,
+                    enablePullUp: true,
+                    header: ClassicHeader(),
+                    onRefresh: _onRefresh,
+                    onLoading: _onLoading,
+                    child: ListView(children: [
+                      new ListItem(),
+                      new Divider(color: Colors.white,),
+                      new ListItem()
+                    ]),
+                  ),
                 ),
               ),
             ],

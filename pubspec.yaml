@@ -22,6 +22,8 @@ environment:
 
 dependencies:
   superellipse_shape: ^0.1.5
+  pull_to_refresh: ^1.6.3
+
   flutter:
     sdk: flutter
 
@@ -47,10 +49,6 @@ flutter:
   uses-material-design: true
   assets:
     - lib/view/res_fake/fakecontent.jpeg
-    - lib/view/res_fake/fakecontent_1.jpeg
-    - lib/view/res_fake/fakecontent_2.jpeg
-    - lib/view/res_fake/fakecontent_3.jpeg
-    - lib/view/res_fake/fakecontent_4.jpeg
 
   fonts:
     - family: Inter

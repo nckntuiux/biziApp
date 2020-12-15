@@ -7,7 +7,7 @@ import 'package:superellipse_shape/superellipse_shape.dart';
 
 import '../../assets/styles.dart';
 import '../../assets/strings.dart';
-import '../order/address.dart';
+import 'address.dart';
 
 class AccountPage extends StatefulWidget {
   AccountPage({Key key, this.title}) : super(key: key);
@@ -25,7 +25,7 @@ class _AccountPageState extends State<AccountPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_rounded)),
-        title: Text('Аккаунт', style: sAppBar,),
+        title: Text('Аккаунт', style: sAppBarText,),
         elevation: 0,
         brightness: Brightness.light,
       ),

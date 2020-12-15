@@ -106,7 +106,7 @@ class _LoginChangePageState extends State<LoginChangePage> {
             child: new TextField(
               controller: _emailFilter,
               decoration: new InputDecoration(
-                  labelText: 'Email'
+                labelText: 'Email',
               ),
             ),
           ),
@@ -151,6 +151,7 @@ class _LoginChangePageState extends State<LoginChangePage> {
 
   void _savePressed () {
     print('The user wants to save credentials with $_email and $_password');
+    Navigator.pop(context);
   }
 
   
