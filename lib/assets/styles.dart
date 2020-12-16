@@ -82,6 +82,11 @@ TextStyle sButton = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
+TextStyle sButtonLight = TextStyle(
+  color: colorWhite,
+  fontWeight: FontWeight.w600,
+);
+
 TextStyle sHeading = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.w400,
@@ -110,4 +115,22 @@ TextStyle sAltFinish = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.w400,
   fontSize: 18,
+);
+
+TextStyle sHeadingOrder = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w500,
+  fontSize: 32,
+);
+
+TextStyle sAltOrder = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w500,
+  fontSize: 18,
+);
+
+TextStyle sHeadingAccount = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.w900,
+  fontSize: 32,
 );

@@ -32,23 +32,27 @@ class _AccountOrdersPageState extends State<AccountOrdersPage> {
             scrollDirection: Axis.vertical,
               shrinkWrap: true,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  child: new Card(
+                 Container(
+                   child: new Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    margin: EdgeInsets.all(8.0),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          new Text("Заказ № 23457-001", style: sHeadingFinish,),
-                          new Text("Доставлен в 23:59 12 декабря 2077 года", style: sAltFinish,),
-                          new Divider(),
+                          new Text("Заказ № 23457-001", style: sAltOrder,),
+                          new Text("Доставлен в 23:59 12 декабря 2077 года", style: sAltOrder,),
+                          new Divider(color: colorWhite,),
                           new AddressTextItem(),
+                          new Divider(),
                           new ListItemCompact()
                         ],),
                     ),
-                  ),
                 ),
+                 ),
               ],
             ),
           ),

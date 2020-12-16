@@ -25,7 +25,7 @@ class _AccountPageState extends State<AccountPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_rounded)),
-        title: Text('Аккаунт', style: sAppBarText,),
+        //title: Text('Аккаунт', style: sAppBarText,),
         elevation: 0,
         brightness: Brightness.light,
       ),
@@ -34,7 +34,7 @@ class _AccountPageState extends State<AccountPage> {
           new Column(children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: new Text("Николай Благовестный", style: sHeadingFinish,),
+              child: new Text("Николай Благовестный", style: sHeadingAccount, maxLines: 2,),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

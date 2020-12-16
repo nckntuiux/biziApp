@@ -59,8 +59,8 @@ class _CartPageState extends State<CartPage> {
                     onPressed: _onButtonPressed,
                     height: 48,
                     minWidth: double.infinity,
-                    child: Text("Оформить заказ на ХХХ руб.", style: sButton,),
-                    color: Colors.amber,),
+                    child: Text("Оформить заказ на ХХХ руб.", style: sButtonLight,),
+                    color: brandRGB0[900],),
                 )
               ],
             ),

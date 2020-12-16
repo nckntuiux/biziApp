@@ -200,29 +200,39 @@ class AddressItemState extends State<AddressItem> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+    return Container(
+      decoration: BoxDecoration(
+          boxShadow: [ BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 28.8,
+            spreadRadius: 2.0,
+          )]
+      ),
       child: new Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        margin: EdgeInsets.all(8.0),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: new Column(
             children: [
-              new AddressTextItem(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Container(child: new AddressTextItem(), width: double.infinity,),
+              ),
               new Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(right: 8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(12.0)),
                       child: new FlatButton(onPressed: _onEditPressed, child: new Text("Изменить", style: sButton,), color: Colors.grey[200], height: 48,),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                      child: new FlatButton(onPressed: _onDefaultPressed, child: new Text(btnName, style: sButton,), color: Colors.grey[200], height: 48,),
-                    ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    child: new FlatButton(onPressed: _onDefaultPressed, child: new Text(btnName, style: sButton,), color: Colors.grey[200], height: 48,),
                   ),
                 ],
               )
@@ -240,8 +250,14 @@ class AddressTextItem extends StatelessWidget {
     return new Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        new Text("Офис (Основной адрес)", style: sHeading,),
-        new Text("Кантемировская ул., 47А, корп. 2, стр. 6,\nМосква, Россия\nПолучатель: Первышин Михаил Анатольевич \n+7 (904) 371-48-57"),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 4.0),
+          child: new Text("Офис (Основной адрес)", style: sHeading,),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: new Text("Кантемировская ул., 47А, корп. 2, стр. 6,\nМосква, Россия\nПолучатель: Первышин Михаил Анатольевич \n+7 (904) 371-48-57"),
+        ),
       ],
     );
   }

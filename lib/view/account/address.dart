@@ -39,7 +39,7 @@ class _AddressPageState extends State<AddressPage> {
                   new AddressItem(),
                 ],
               ),
-        ]),
+        ], padding: EdgeInsets.all(8.0),),
         //alignment: AlignmentDirectional.centerStart,
       )
     );

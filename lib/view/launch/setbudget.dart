@@ -81,8 +81,8 @@ class _SetBudgetPageState extends State<SetBudgetPage> {
                   height: 48,
                   minWidth: double.infinity,
                   onPressed: _onButtonPressed,
-                  child: Text("Оформить заказ на ХХХ руб.", style: sButton,),
-                  color: Colors.amber,
+                  child: Text("Оформить заказ на ХХХ руб.", style: sButtonLight,),
+                  color: brandRGB0[900],
                 ),
               )
             ],
