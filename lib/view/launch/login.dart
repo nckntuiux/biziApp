@@ -205,16 +205,24 @@ class _LoginPageState extends State<LoginPage> {
                   height: 48,
                   minWidth: double.infinity,
                   child: Text("Войти", style: sButtonLight,),
-                  color: Colors.amber,),
+                  color: brandRGB0[900]),
               ),
             ),
-            new FlatButton(
-              child: new Text('Нет аккаунта? Зарегистрироваться'),
-              onPressed: _formChange,
-            ),
-            new FlatButton(
-              child: new Text('Забыли пароль?'),
-              onPressed: _passwordReset,
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  new FlatButton(
+                    child: new Text('Нет аккаунта?'),
+                    onPressed: _formChange,
+                  ),
+                  new FlatButton(
+                    child: new Text('Забыли пароль?'),
+                    onPressed: _passwordReset,
+                  ),
+                ],
+              ),
             )
           ],
         ),
