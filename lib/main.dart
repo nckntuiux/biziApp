@@ -12,10 +12,11 @@ int _selectedBottomIndex = 0;
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
-  runApp(MyApp());
+  runApp(LunatexApp());
+  imageCache.clear();
 }
 
-class MyApp extends StatelessWidget {
+class LunatexApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(

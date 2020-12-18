@@ -127,7 +127,7 @@ class ListItemState extends State<ListItem> {
               height: 81,
               padding: EdgeInsets.only(right: 15),
               //margin: EdgeInsets.only(right: 15),
-              child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
+              child: Image(image: AssetImage('res_fake/fakecontent.jpg'))),
           new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -159,7 +159,7 @@ class ListItemCompact extends StatelessWidget {
             height: 61,
             padding: EdgeInsets.only(right: 15),
             //margin: EdgeInsets.only(right: 15),
-            child: Image(image: AssetImage('res_fake/fakecontent.jpeg'))),
+            child: Image.asset('res_fake/fakecontent.png', width: 61, height: 61,)),
         new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

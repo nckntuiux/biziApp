@@ -41,23 +41,25 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path_android: "lib/assets/icon/icon.png"
-  image_path_ios: "lib/assets/icon/icon_ios.png"
+  image_path_android: "assets/icon/icon_android.png"
+  image_path_ios: "assets/icon/icon_ios.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
+  assets:
+    - assets/fake/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-    - lib/view/res_fake/fakecontent.jpeg
 
   fonts:
+    - family: LTX
+      fonts:
+      - asset: fonts/LTX.ttf
     - family: Inter
       fonts:
         - asset: fonts/Inter-Black.ttf
