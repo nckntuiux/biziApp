@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 import 'package:ltx_deliver/assets/styles.dart';
 import 'package:ltx_deliver/view/account/account_edit.dart';
 import 'package:ltx_deliver/view/launch/login.dart';
@@ -47,7 +48,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_rounded)),
+          leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(SFSymbols.chevron_left)),
           title: Text('Поиск', style: sAppBarText,),
           elevation: 0,
           brightness: Brightness.light,

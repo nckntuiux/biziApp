@@ -128,7 +128,6 @@ class _AddressChangePageState extends State<AddressChangePage> {
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(12.0)),
               child: new Container(
-
                 child: new TextField(
                   controller: _countryFilter,
                   decoration: new InputDecoration(

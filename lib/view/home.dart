@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 import 'package:ltx_deliver/view/launch/setbudget.dart';
 import 'package:ltx_deliver/view/search.dart';
 import 'package:ltx_deliver/items.dart';
@@ -107,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           appBar: AppBar(
             elevation: 0.0,
             centerTitle: true,
-            leading: IconButton(icon: Icon(Icons.search), onPressed: _onSearchItemPressed,),
+            leading: IconButton(icon: Icon(SFSymbols.search,), onPressed: _onSearchItemPressed,),
             title: Text('Lunatex', style: sAppBarText,),
             bottom: TabBar(
                 isScrollable: true,
@@ -134,11 +135,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 16.0),
-                child: new IconButton(icon: Icon(Icons.person_outline), onPressed: _onActionLoginItemPressed),
+                child: new IconButton(icon: Icon(SFSymbols.person_alt_circle), onPressed: _onActionLoginItemPressed),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 16.0),
-                child: new IconButton(icon: Icon(Icons.attach_money_rounded), onPressed: _onActionSetBudgetItemPressed),
+                child: new IconButton(icon: Icon(SFSymbols.creditcard), onPressed: _onActionSetBudgetItemPressed),
               ),
             ],
           ),
@@ -158,15 +159,15 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                   iconSize: 32.0,
                   items: const <BottomNavigationBarItem>[
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
+                      icon: Icon(SFSymbols.house),
                       label: 'Главная',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.shopping_cart),
+                      icon: Icon(SFSymbols.cart),
                       label: 'Корзина',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.person),
+                      icon: Icon(SFSymbols.person),
                       label: 'Профиль',
                     ),
                   ],
@@ -174,8 +175,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
                   backgroundColor: Colors.white,
-                  selectedItemColor: brandRGB0[900],
-                  unselectedItemColor: Colors.black,
+                  selectedItemColor: Colors.black,
+                  //unselectedItemColor: Colors.black,
                   onTap: _onBottomItemTapped,
                 ),
               ),

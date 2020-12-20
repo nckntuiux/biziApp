@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 import 'package:ltx_deliver/view/launch/login.dart';
 import 'package:ltx_deliver/items.dart';
 
@@ -33,7 +34,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.close)),
+        leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(SFSymbols.multiply)),
         title: Text('Корзина', style: sAppBarText,),
         elevation: 0,
         brightness: Brightness.light,

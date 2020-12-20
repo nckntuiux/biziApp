@@ -106,7 +106,6 @@ class _LoginChangePageState extends State<LoginChangePage> {
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(12.0)),
               child: new Container(
-
                 child: new TextField(
                   controller: _emailFilter,
                   decoration: new InputDecoration(
