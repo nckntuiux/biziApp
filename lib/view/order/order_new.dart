@@ -13,6 +13,8 @@ class NewOrderPage extends StatefulWidget {
 
   final String title;
 
+  bool _hasBeenPressed = false;
+
   @override
   _NewOrderPageState createState() => _NewOrderPageState();
 }
@@ -21,6 +23,19 @@ class _NewOrderPageState extends State<NewOrderPage> {
 
   String _finishHeader = "Проверьте адрес";
   String _finishAlt = "Нажмите для выбора правильного";
+  MaterialButton _orderButton;
+
+
+  @override
+  void initState() {
+    _orderButton = new MaterialButton(
+      height: 48,
+      minWidth: double.infinity,
+      onPressed: _onButtonPressed,
+      child: Text("Оформить заказ на ХХХ руб.", style: sButtonLight,),
+      color: brandRGB0[900],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,40 +48,37 @@ class _NewOrderPageState extends State<NewOrderPage> {
       ),
       body: Container(
         child: SafeArea(
-          child: Column(
-            children: [
-              new Expanded(
-                child: ListView(
-                  children: [
-                    Center(
-                      child: new Column(crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          new Text(_finishHeader, style: sHeadingFinish,),
-                          new Text(_finishAlt, style: sAltFinish,),
-                          new Divider(color: colorWhite, height: 80,),
-                          new Card(
-                            child: Container(
-                              width: double.infinity,
-                              child: new AddressTextItem(),
-                              padding: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 54.0),
+            child: Column(
+              children: [
+                new Expanded(
+                  child: ListView(
+                    children: [
+                      Center(
+                        child: new Column(crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            new Text(_finishHeader, style: sHeadingFinish,),
+                            new Text(_finishAlt, style: sAltFinish,),
+                            new Divider(color: colorWhite, height: 80,),
+                            new Card(
+                              child: Container(
+                                width: double.infinity,
+                                child: new AddressTextItem(),
+                                padding: EdgeInsets.all(8.0),
+                              ),
                             ),
-                          ),
-                        ],),
-                    ),
-                  ],
+                          ],),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                child: new MaterialButton(
-                  height: 48,
-                  minWidth: double.infinity,
-                  onPressed: _onButtonPressed,
-                  child: Text("Оформить заказ на ХХХ руб.", style: sButtonLight,),
-                  color: brandRGB0[900],
+                ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  child: _orderButton,
                 ),
-              )
-            ],
+              ],
+            ),
           ),
 
         ),
@@ -79,8 +91,7 @@ class _NewOrderPageState extends State<NewOrderPage> {
     setState(() {
       _finishHeader = "Cпасибо за заказ!";
       _finishAlt = "Ищем водителя поблизости";
+      _orderButton = MaterialButton();
     });
   }
-
-
 }

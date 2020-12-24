@@ -79,6 +79,8 @@ class _LoginPageState extends State<LoginPage> {
       body: new Container(
         padding: EdgeInsets.all(16.0),
         child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             _buildTextFields(),
             _buildButtons(),
@@ -98,9 +100,10 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildTextFields() {
     if (_form == FormType.login) {
-      return Expanded(
-        child: new Container(
+      return Container(
           child: new ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -127,13 +130,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               )
             ],
-          ),
-        ),
-      );
+          ));
     } else {
-      return Expanded(
-        child: new Container(
+      return Container(
           child: new ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -185,9 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               )
             ],
-          ),
-        ),
-      );
+          ));
     }
   }
 
