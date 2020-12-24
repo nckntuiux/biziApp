@@ -61,11 +61,24 @@ class _NewOrderPageState extends State<NewOrderPage> {
                             new Text(_finishHeader, style: sHeadingFinish,),
                             new Text(_finishAlt, style: sAltFinish,),
                             new Divider(color: colorWhite, height: 80,),
-                            new Card(
-                              child: Container(
-                                width: double.infinity,
-                                child: new AddressTextItem(),
-                                padding: EdgeInsets.all(8.0),
+                            Container(
+                              decoration: BoxDecoration(
+                                  boxShadow: [ BoxShadow(
+                                    color: Colors.black.withOpacity(0.03),
+                                    blurRadius: 28.8,
+                                    spreadRadius: 2.0,
+                                  )]
+                              ),
+                              child: new Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Container(
+                                  margin: EdgeInsets.all(8.0),
+                                  width: double.infinity,
+                                  child: new AddressTextItem(),
+                                  padding: EdgeInsets.all(8.0),
+                                ),
                               ),
                             ),
                           ],),
