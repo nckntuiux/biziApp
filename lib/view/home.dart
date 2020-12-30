@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
+import 'package:ltx_deliver/assets/ltx_icons.dart';
 import 'package:ltx_deliver/view/launch/setbudget.dart';
 import 'package:ltx_deliver/view/search.dart';
 import 'package:ltx_deliver/items.dart';
@@ -109,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             elevation: 0.0,
             centerTitle: true,
             leading: IconButton(icon: Icon(SFSymbols.search,), onPressed: _onSearchItemPressed,),
-            title: Text('Lunatex', style: sAppBarText,),
+            title: Text('Бюджет: 23000₽', style: sAppBarText,),
             bottom: TabBar(
                 isScrollable: true,
                 unselectedLabelColor: Colors.black.withOpacity(0.3),
@@ -134,13 +135,14 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 ]),
             actions: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(right: 16.0),
+                padding: const EdgeInsets.only(right: 4.0),
                 child: new IconButton(icon: Icon(SFSymbols.person_alt_circle), onPressed: _onActionLoginItemPressed),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 16.0),
-                child: new IconButton(icon: Icon(SFSymbols.creditcard), onPressed: _onActionSetBudgetItemPressed),
+                padding: const EdgeInsets.only(right: 4.0),
+                child: new IconButton(icon: Icon(LTX.pie_five), onPressed: _onActionSetBudgetItemPressed),
               ),
+
             ],
           ),
           bottomNavigationBar: Container(

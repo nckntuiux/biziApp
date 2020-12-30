@@ -35,15 +35,6 @@ class _SearchPageState extends State<SearchPage> {
     }
   }
 
-  void _onActionLoginItemPressed() {
-    setState(() {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +59,6 @@ class _SearchPageState extends State<SearchPage> {
                         child: Icon(Icons.search, color: Colors.black,),
                       )
                     ),
-                    obscureText: true,
                   ),
                 ),
               )

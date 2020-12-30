@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ltx_deliver/assets/styles.dart';
 
 class AddressChangePage extends StatefulWidget {
   @override
@@ -113,10 +114,6 @@ class _AddressChangePageState extends State<AddressChangePage> {
       title: new Text("Изменить данные"),
       centerTitle: true,
       elevation: 0,
-      actions: [
-        new IconButton(icon: Icon(Icons.save), onPressed: _savePressed)
-      ],
-
     );
   }
 
@@ -169,7 +166,6 @@ class _AddressChangePageState extends State<AddressChangePage> {
                   decoration: new InputDecoration(
                       hintText: 'Дом'
                   ),
-                  obscureText: true,
                 ),
               ),
             ),
@@ -182,20 +178,21 @@ class _AddressChangePageState extends State<AddressChangePage> {
                   decoration: new InputDecoration(
                       hintText: 'ФИО контактного лицы'
                   ),
-                  obscureText: true,
                 ),
               ),
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              child: new Container(
-                margin: const EdgeInsets.only(top: 16.0),
-                child: new TextField(
-                  controller: _phoneFilter,
-                  decoration: new InputDecoration(
-                      hintText: 'Телефон контактного лица'
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: Container(
+                  child: new MaterialButton(
+                    height: 48,
+                    minWidth: double.infinity,
+                    onPressed: _savePressed,
+                    child: Text("Сохранить", style: sButtonLight,),
+                    color: brandRGB0[900],
                   ),
-                  obscureText: true,
                 ),
               ),
             )

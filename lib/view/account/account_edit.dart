@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ltx_deliver/assets/styles.dart';
 
 class LoginChangePage extends StatefulWidget {
   @override
@@ -14,10 +15,12 @@ class _LoginChangePageState extends State<LoginChangePage> {
 
   final TextEditingController _emailFilter = new TextEditingController();
   final TextEditingController _passwordFilter = new TextEditingController();
+  final TextEditingController _passwordRepeatFilter = new TextEditingController();
   final TextEditingController _phoneFilter = new TextEditingController();
   final TextEditingController _nameFilter = new TextEditingController();
   String _email = "";
   String _password = "";
+  String _passwordRepeat = "";
   String _name = "";
   String _phone = "";
   FormType _form = FormType.login; // our default setting is to login, and we should switch to creating an account when the user chooses to
@@ -25,6 +28,7 @@ class _LoginChangePageState extends State<LoginChangePage> {
   _LoginChangePageState() {
     _emailFilter.addListener(_emailListen);
     _passwordFilter.addListener(_passwordListen);
+    _passwordRepeatFilter.addListener(_passwordRepeatListen);
     _phoneFilter.addListener(_phoneListen);
     _nameFilter.addListener(_nameListen);
   }
@@ -38,6 +42,14 @@ class _LoginChangePageState extends State<LoginChangePage> {
   }
 
   void _passwordListen() {
+    if (_passwordFilter.text.isEmpty) {
+      _password = "";
+    } else {
+      _password = _passwordFilter.text;
+    }
+  }
+
+  void _passwordRepeatListen() {
     if (_passwordFilter.text.isEmpty) {
       _password = "";
     } else {
@@ -91,10 +103,6 @@ class _LoginChangePageState extends State<LoginChangePage> {
       title: new Text("Изменить данные"),
       centerTitle: true,
       elevation: 0,
-      actions: [
-        new IconButton(icon: Icon(Icons.save), onPressed: _savePressed)
-      ],
-      
     );
   }
 
@@ -156,11 +164,26 @@ class _LoginChangePageState extends State<LoginChangePage> {
               child: new Container(
                 margin: const EdgeInsets.only(top: 16.0),
                 child: new TextField(
-                  controller: _passwordFilter,
+                  controller: _passwordRepeatFilter,
                   decoration: new InputDecoration(
                       hintText: ' Повторить пароль'
                   ),
                   obscureText: true,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                child: Container(
+                  child: new MaterialButton(
+                    height: 48,
+                    minWidth: double.infinity,
+                    onPressed: _savePressed,
+                    child: Text("Сохранить", style: sButtonLight,),
+                    color: brandRGB0[900],
+                  ),
                 ),
               ),
             )

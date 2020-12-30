@@ -24,7 +24,7 @@ class _AddressPageState extends State<AddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(SFSymbols.chevron_right)),
+        leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(SFSymbols.chevron_left)),
         title: Text('Адреса доставки'),
         elevation: 0,
         brightness: Brightness.light,

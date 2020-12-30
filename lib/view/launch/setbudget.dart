@@ -41,10 +41,14 @@ class _SetBudgetPageState extends State<SetBudgetPage> {
     return Scaffold(
       body: Container(
         child: SafeArea(
-          child: Column(
-            children: [
-              new Expanded(
-                child: ListView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
                   children: [
                     Center(
                       child: new Column(crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,11 +65,11 @@ class _SetBudgetPageState extends State<SetBudgetPage> {
                                 borderRadius: BorderRadius.all(Radius.circular(12.0)),
                                 child: new Container(
                                   child: new TextField(
+                                    textAlign: TextAlign.center,
                                     controller: _budgetFilter,
                                     decoration: new InputDecoration(
-                                        hintText: 'Бюджет',
+                                      hintText: 'Бюджет',
                                     ),
-                                    obscureText: true,
                                   ),
                                 ),
                               )
@@ -74,18 +78,21 @@ class _SetBudgetPageState extends State<SetBudgetPage> {
                     ),
                   ],
                 ),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                child: new MaterialButton(
-                  height: 48,
-                  minWidth: double.infinity,
-                  onPressed: _onButtonPressed,
-                  child: Text("Далее", style: sButtonLight,),
-                  color: brandRGB0[900],
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    child: new MaterialButton(
+                      height: 48,
+                      minWidth: double.infinity,
+                      onPressed: _onButtonPressed,
+                      child: Text("Далее", style: sButtonLight,),
+                      color: brandRGB0[900],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
 
         ),
@@ -95,10 +102,7 @@ class _SetBudgetPageState extends State<SetBudgetPage> {
   }
 
   void _onButtonPressed() {
-    setState(() {
-      _finishHeader = "Cпасибо за заказ!";
-      _finishAlt = "Ищем водителя для доставки вашего заказа";
-    });
+    Navigator.pop(context);
   }
 
 
