@@ -60,7 +60,7 @@ class _SetBudgetPageState extends State<SetBudgetPage> {
                           new Text(_finishAlt, style: sAltFinish,),
                           new Divider(color: colorWhite, height: 40,),
                           new Padding(
-                              padding: EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
+                              padding: EdgeInsets.only(right: 54.0, left: 60.0, bottom: 60.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.all(Radius.circular(12.0)),
                                 child: new Container(
@@ -79,14 +79,27 @@ class _SetBudgetPageState extends State<SetBudgetPage> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+                  padding: const EdgeInsets.only(left: 32.0, right: 32.0, top: 8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                     child: new MaterialButton(
                       height: 48,
                       minWidth: double.infinity,
                       onPressed: _onButtonPressed,
-                      child: Text("Далее", style: sButtonLight,),
+                      child: Text("Cвободный", style: sButtonLight,),
+                      color: brandRGB0[900],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 32.0, right: 32.0, top: 20.0, bottom: 8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    child: new MaterialButton(
+                      height: 48,
+                      minWidth: double.infinity,
+                      onPressed: _onButtonPressed,
+                      child: Text("Готово", style: sButtonLight,),
                       color: brandRGB0[900],
                     ),
                   ),
