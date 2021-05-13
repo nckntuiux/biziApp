@@ -195,11 +195,12 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                     header: ClassicHeader(),
                     onRefresh: _onRefresh,
                     onLoading: _onLoading,
-                    child: ListView(children: [
-                      new ListItem(),
-                      new Divider(color: Colors.white,),
-                      new ListItem()
-                    ]),
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        children: [
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem())
+                        ]),
                   ),
                 ),
               ),
