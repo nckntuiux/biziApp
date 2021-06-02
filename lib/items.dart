@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:ltx_deliver/assets/styles.dart';
 import 'package:ltx_deliver/view/account/address_edit.dart';
 import 'package:ltx_deliver/view/item.dart';
@@ -7,7 +8,7 @@ class GridItemState extends State<GridItem> {
 
   bool inCart = false;     //Товаров в корзине
 
-  void _onAddItemPressed() {      //DEPRECATED!! Счетчик товаров в корзине, сделано через жопу
+  void _onAddItemPressed() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ItemPage()),
@@ -16,17 +17,27 @@ class GridItemState extends State<GridItem> {
 
   Widget _buildButtons() {                    //DEPRECATED!! Перестраивает кнопки в карточке, оставил на всякий
     if (!inCart) {
-
-    } else {
       new Container(
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
           child: new FlatButton(
             onPressed: () => _onAddItemPressed(),
             child: SizedBox(width: double.infinity, child: Text("*Ценовой диапазон*", style: sButton)),
-
             height: 48,
             color: Colors.grey[200],
+          ),
+        ),
+        margin: EdgeInsets.all(4.0),
+      );
+    } else {
+      new Container(
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          child: new FlatButton(
+            onPressed: () => _onAddItemPressed(),
+            child: SizedBox(width: double.infinity, child: Text("*Ценовой диапазон*", style: sButtonLight)),
+            height: 48,
+            color: brandRGB0[900],
           ),
         ),
         margin: EdgeInsets.all(4.0),
@@ -43,53 +54,72 @@ class GridItemState extends State<GridItem> {
           MaterialPageRoute(builder: (context) => ItemPage()),
         );
       },
-      child: SizedBox.shrink(
-        child: new Container(
-          child: new Column(
-            children: [
-              new Container(
-                  //padding: EdgeInsets.only(right: 15),
-                  //margin: EdgeInsets.only(right: 15),
-                  //child: AspectRatio(aspectRatio: 1, child: Image(image: AssetImage('res_fake/fakecontent.jpg'), width: double.infinity,)) //TODO: ПОФИКСИТЬ КАРТИНКУ!!!
-              ),
-              new Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                new Text("12-15 шт/уп"),
-                new Text("  "),
-                new Text("9 цаетов"),
-              ],),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  new Text("Поплин"),
-                  new Text("Полисатин 85 гр."),
-                ],
-              ),
-              new Container(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  child: new FlatButton(
-                    onPressed: () => _onAddItemPressed(),
-                    child: SizedBox(
-                        width: double.infinity,
-                        child: Center(child: Text("*Сумма выбранных товаров*", style: sButton))      //TODO: Изменить цвет и надпись динамически от выбранных в корзине товаров
-                    ),
-                    height: 48,
-                    color: Colors.grey[200],
-                  ),
-                ),
-                margin: EdgeInsets.all(4.0),
-              )
-            ],
+      child: new Wrap(
+        children: [
+          AspectRatio(
+            aspectRatio: 1,
+            child: new Container(
+                width: double.infinity,
+                //padding: EdgeInsets.only(right: 15),
+                //margin: EdgeInsets.only(right: 15),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                child: Image(fit: BoxFit.fitHeight, image: AssetImage('assets/fake/fake.png'), width: double.infinity,) //TODO: ПОФИКСИТЬ КАРТИНКУ!!!
+            ),
           ),
-        ),
+          new Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Container(
+              margin: EdgeInsets.only(top: 6.0, bottom: 6.0, right: 6.0),
+              padding: EdgeInsets.all(6.0),
+              decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.all(Radius.circular(16.0))),
+              child: new Text("12-15 шт/уп"),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 6.0, bottom: 6.0),
+              padding: EdgeInsets.all(6.0),
+              decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.all(Radius.circular(16.0))),
+              child: new Text("99 цветов"),
+            ),
+          ],),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: new Text("Поплин", style: sHeading,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: new Text("Полисатин 85 гр.", style: sAlt,),
+                ),
+              ],
+            ),
+          ),
+          new Container(
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              child: new FlatButton(
+                onPressed: () => _onAddItemPressed(),
+                child: SizedBox(
+                    width: double.infinity,
+                    child: Center(child: Text("*Стоимость товара*", style: sButton))      //TODO: Изменить цвет и надпись динамически от выбранных в корзине товаров
+                ),
+                height: 48,
+                color: Colors.grey[200],
+              ),
+            ),
+            margin: EdgeInsets.all(4.0),
+          )
+        ],
       ),
     );
   }
 
 }       //Элемент сетки главного экрана
 
-class ListItemState extends State<ListItem> {
+class SizeItemState extends State<SizeItem> {
   
   int inCart = 0;
 
@@ -98,112 +128,6 @@ class ListItemState extends State<ListItem> {
       context,
       MaterialPageRoute(builder: (context) => ItemPage()),
     );
-  }
-
-  void _onAddItemPressed(int addedItems) {
-    if (addedItems == 1) {
-      setState(() {
-        inCart++;
-      });
-    } else if (addedItems <= -1) {
-      setState(() {
-        inCart--;
-      });
-    } else if (addedItems > 1) {
-      setState(() {
-        _buildButtons();
-        inCart += addedItems;
-      });
-    } else {
-      setState(() {
-        _buildButtons();
-      });
-    }
-    
-  }
-  
-  Widget _buildButtons() {
-    if (inCart == 0) {
-      return new Row(
-        children: [
-          new Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              child: new FlatButton(
-                onPressed: () => _onAddItemPressed(1),
-                child: Text("В корзину", style: sButton),
-                minWidth: 54,
-                height: 48,
-                color: Colors.grey[200],
-              ),
-            ),
-            margin: EdgeInsets.all(4.0),
-          ),
-          new Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              child: new FlatButton(
-                onPressed: () => _onAddItemPressed(5),
-                child: Text("5", style: sButton),
-                minWidth: 54,
-                height: 48,
-                color: Colors.grey[200],
-              ),
-            ),
-            margin: EdgeInsets.all(4.0),
-          ),
-          new Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              child: new FlatButton(
-                onPressed: () => _onAddItemPressed(15),
-                child: Text("15", style: sButton),
-                minWidth: 54,
-                height: 48,
-                color: Colors.grey[200],
-              ),
-            ),
-            margin: EdgeInsets.all(4.0),
-          ),
-        ],
-      );
-    } else {
-      return new Row(
-        children: [
-          new Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              child: new FlatButton(
-                onPressed: () => _onAddItemPressed(1),
-                child: Text("+", style: sButton,),
-                minWidth: 54,
-                height: 48,
-                color: Colors.grey[200],
-              ),
-            ),
-            margin: EdgeInsets.only(left: 4.0),
-          ),
-          new Container(
-            child: new Text(inCart.toString(), style: sButton,),
-            padding: new EdgeInsets.symmetric(horizontal: 32.0),
-            margin: EdgeInsets.only(left: 4.0),
-          ),
-          new Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12.0)),
-              child: new FlatButton(
-                onPressed: () => _onAddItemPressed(-1),
-                child: Text("-", style: sButton,),
-                minWidth: 54,
-                height: 48,
-                color: Colors.grey[200],
-              ),
-            ),
-            margin: EdgeInsets.only(left: 4.0),
-          ),
-        ],
-      );
-    }
   }
   
   @override
@@ -219,25 +143,36 @@ class ListItemState extends State<ListItem> {
         margin: EdgeInsets.all(8.0),
         child: new Row(
           children: [
-            new Container(
-                width: 81,
-                height: 81,
-                padding: EdgeInsets.only(right: 15),
-                //margin: EdgeInsets.only(right: 15),
-                child: Image(image: AssetImage('res_fake/fakecontent.jpg'))),
-            new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 6.0,),
-                  child: new Text("2499 ₽", style: sAlt,),
+                new Container(
+                  width: 81,
+                  height: 81,
+                  padding: EdgeInsets.only(right: 15, left: 15),
+                  //margin: EdgeInsets.only(right: 15),
+                  child: Image(fit: BoxFit.fitHeight,image: AssetImage('assets/fake/fake.png'))
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 6.0,),
-                  child: new Text("Сатин «Эконом» Евро 2н", style: sHeading,),
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: new Text("В корзине: "+inCart.toString()),
                 ),
-                _buildButtons(),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6.0,),
+                    child: new Text("Размер", style: sHeading,),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6.0,),
+                    child: new Text("Пододеяльник 200/220\nПростыня  200/220\nНаволочки 2шт   70/70", style: sAlt,),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -246,85 +181,6 @@ class ListItemState extends State<ListItem> {
   }
   
 }       //DEPRECATED!! Элемент списка главного экрана
-
-class SizeListItemState extends State<SizeListItem> {
-
-  int inCart = 0;
-
-  void _onAddItemPressed(int addedItems) {              // Счетчик товаров в корзине, сделано через жопу
-    if (addedItems == 1) {
-      setState(() {
-        inCart++;
-      });
-    } else if (addedItems <= -1) {
-      setState(() {
-        inCart--;
-      });
-    } else if (addedItems > 1) {
-      setState(() {
-        _buildButtons();
-        inCart += addedItems;
-      });
-    } else {
-      setState(() {
-        _buildButtons();
-      });
-    }
-
-  }
-
-  Widget _buildButtons() {
-    return new Row(
-      children: [
-        new Container(
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
-            child: new FlatButton(
-              onPressed: () => _onAddItemPressed(1),
-              child: Text("+", style: sButton,),
-              minWidth: 54,
-              height: 48,
-              color: Colors.grey[200],
-            ),
-          ),
-          margin: EdgeInsets.only(left: 4.0),
-        ),
-        new Container(
-          child: new Text(inCart.toString(), style: sButton,),
-          padding: new EdgeInsets.symmetric(horizontal: 32.0),
-          margin: EdgeInsets.only(left: 4.0),
-        ),
-        new Container(
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
-            child: new FlatButton(
-              onPressed: () => _onAddItemPressed(-1),
-              child: Text("-", style: sButton,),
-              minWidth: 54,
-              height: 48,
-              color: Colors.grey[200],
-            ),
-          ),
-          margin: EdgeInsets.only(left: 4.0),
-        ),
-      ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      margin: EdgeInsets.all(8.0),
-      child: new Row(
-        children: [
-          new Text("Название размера"),
-          _buildButtons(),
-        ],
-      ),
-    );
-  }
-
-}       //Элемент списка размеров
 
 class AddressItemState extends State<AddressItem> {
 
@@ -393,13 +249,9 @@ class GridItem extends StatefulWidget {
   @override
   createState() => new GridItemState();
 }                   //Виджеты с
-class ListItem extends StatefulWidget {
+class SizeItem extends StatefulWidget {
   @override
-  createState() => new ListItemState();
-}
-class SizeListItem extends StatefulWidget {
-  @override
-  createState() => new SizeListItemState();
+  createState() => new SizeItemState();
 }
 class AddressItem extends StatefulWidget {
   @override
@@ -416,11 +268,14 @@ class ListItemCompact extends StatelessWidget {
             height: 61,
             padding: EdgeInsets.only(right: 15),
             //margin: EdgeInsets.only(right: 15),
-            child: Image.asset('res_fake/fakecontent.png', width: 61, height: 61,)),
+            child: Image.asset('assets/fake/fake.png', width: 61, height: 61,fit: BoxFit.fitHeight,)),
         new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+            ),
             new Row(
               children: [
                 new Text("Сатин Люкс+", style: sHeading,),

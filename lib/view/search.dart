@@ -65,13 +65,29 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
         ),
-        body: Container(
-          child: new ListView(children: [
-            new ListItem(),
-            new Divider(color: Colors.white,),
-            new ListItem(),
-        ]),
-    ));
+        body: SafeArea(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.count(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.2),
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
+                  children: [
+                    GridTile(child: new GridItem()),
+                    GridTile(child: new GridItem()),
+                    GridTile(child: new GridItem()),
+                    GridTile(child: new GridItem()),
+                    GridTile(child: new GridItem()),
+                    GridTile(child: new GridItem()),
+                    GridTile(child: new GridItem()),
+                    GridTile(child: new GridItem()),
+                  ]),
+            ),
+    ),
+        ));
   }
 
 }

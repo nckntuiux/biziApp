@@ -47,21 +47,35 @@ class _CartPageState extends State<CartPage> {
               children: [
                 new Container(
                   child: Expanded(
-                    child: ListView(children: [
-                      new ListItem(),
-                      new Divider(color: Colors.white,),
-                      new ListItem(),
-                    ]),
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height / 1.17),
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                        children: [
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                        ]),
                   ),
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  child: new FlatButton(
-                    onPressed: _onButtonPressed,
-                    height: 48,
-                    minWidth: double.infinity,
-                    child: Text("Оформить заказ на ХХХ руб.", style: sButtonLight,),
-                    color: brandRGB0[900],),
+                Container(
+                  margin: EdgeInsets.only(top: 16.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    child: new FlatButton(
+                      onPressed: _onButtonPressed,
+                      height: 48,
+                      minWidth: double.infinity,
+                      child: Text("Оформить заказ на ХХХ руб.", style: sButtonLight,),
+                      color: brandRGB0[900],),
+                  ),
                 )
               ],
             ),

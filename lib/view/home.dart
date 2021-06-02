@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Container(
       child: DefaultTabController(
-        length: 5,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
@@ -128,9 +128,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                   ),
                   Tab(
                     child: Text('Одеяла'),
-                  ),
-                  Tab(
-                    child: Text('Рынок'),
                   ),
                 ]),
             actions: <Widget>[
@@ -197,14 +194,25 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                     onLoading: _onLoading,
                     child: GridView.count(
                         crossAxisCount: 2,
+                        childAspectRatio: MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height / 1.2),
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
                         children: [
                           GridTile(child: new GridItem()),
-                          GridTile(child: new GridItem())
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
                         ]),
                   ),
                 ),
               ),
               Container(
+                padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: SmartRefresher(
                     controller: _refreshController,
@@ -212,15 +220,27 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                     header: ClassicHeader(),
                     onRefresh: _onRefresh,
                     onLoading: _onLoading,
-                    child: ListView(children: [
-                      new ListItem(),
-                      new Divider(color: Colors.white,),
-                      new ListItem()
-                    ]),
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height / 1.2),
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                        children: [
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                        ]),
                   ),
                 ),
               ),
               Container(
+                padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: SmartRefresher(
                     controller: _refreshController,
@@ -228,15 +248,27 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                     header: ClassicHeader(),
                     onRefresh: _onRefresh,
                     onLoading: _onLoading,
-                    child: ListView(children: [
-                      new ListItem(),
-                      new Divider(color: Colors.white,),
-                      new ListItem()
-                    ]),
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height / 1.2),
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                        children: [
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                        ]),
                   ),
                 ),
               ),
               Container(
+                padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: SmartRefresher(
                     controller: _refreshController,
@@ -244,27 +276,22 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                     header: ClassicHeader(),
                     onRefresh: _onRefresh,
                     onLoading: _onLoading,
-                    child: ListView(children: [
-                      new ListItem(),
-                      new Divider(color: Colors.white,),
-                      new ListItem()
-                    ]),
-                  ),
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: SmartRefresher(
-                    controller: _refreshController,
-                    enablePullUp: true,
-                    header: ClassicHeader(),
-                    onRefresh: _onRefresh,
-                    onLoading: _onLoading,
-                    child: ListView(children: [
-                      new ListItem(),
-                      new Divider(color: Colors.white,),
-                      new ListItem()
-                    ]),
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height / 1.2),
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                        children: [
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                          GridTile(child: new GridItem()),
+                        ]),
                   ),
                 ),
               ),

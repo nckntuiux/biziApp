@@ -48,6 +48,7 @@ class _AccountOrdersPageState extends State<AccountOrdersPage> {
                           new Divider(color: colorWhite,),
                           new AddressTextItem(),
                           new Divider(),
+                          new ListItemCompact(),
                           new ListItemCompact()
                         ],),
                     ),
