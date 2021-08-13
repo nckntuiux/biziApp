@@ -1,4 +1,4 @@
-# ltx_deliver
+# bizi
 
 Wholesale deliver app with outsourcing logistics
 
