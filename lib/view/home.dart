@@ -30,6 +30,14 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   int _currentIndex = 0;
   final List<Widget> _children = [];
 
+  void _setActiveTabIndex() {
+    _currentIndex = _tabController.index;
+  }
+
+  int getTabControllerIndex() {
+    return _tabController.index;
+  }
+
   void _onBottomItemTapped(int index) {
     setState(() {
       _selectedBottomIndex = index;
@@ -78,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     _tabController = new TabController(length: 5, vsync: this, initialIndex: 0);
+    _tabController.addListener(_setActiveTabIndex);
     _onBottomItemTapped(0);
   }
 
@@ -139,7 +148,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 padding: const EdgeInsets.only(right: 4.0),
                 child: new IconButton(icon: Icon(LTX.pie_five), onPressed: _onActionSetBudgetItemPressed),
               ),
-
             ],
           ),
           bottomNavigationBar: Container(
@@ -182,9 +190,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             ),
           ),
           body: TabBarView(
+            controller: _tabController,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
                 child: Center(
                   child: SmartRefresher(
                     controller: _refreshController,

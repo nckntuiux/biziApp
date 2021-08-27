@@ -8,8 +8,6 @@ import 'assets/strings.dart';
 
 import 'view/home.dart';
 
-int _selectedBottomIndex = 0;
-
 void main() {
   SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
   runApp(LunatexApp());
