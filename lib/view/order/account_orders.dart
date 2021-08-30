@@ -3,12 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:ltx_deliver/assets/styles.dart';
 import 'package:ltx_deliver/items.dart';
 
-import 'package:superellipse_shape/superellipse_shape.dart';
-
 class AccountOrdersPage extends StatefulWidget {
-  AccountOrdersPage({Key key, this.title}) : super(key: key);
+  AccountOrdersPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _AccountOrdersPageState createState() => _AccountOrdersPageState();

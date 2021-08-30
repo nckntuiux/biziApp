@@ -7,12 +7,10 @@ import 'package:ltx_deliver/view/launch/login.dart';
 import 'package:ltx_deliver/view/order/account_orders.dart';
 import 'package:ltx_deliver/items.dart';
 
-import 'package:superellipse_shape/superellipse_shape.dart';
-
 class SearchPage extends StatefulWidget {
-  SearchPage({Key key, this.title}) : super(key: key);
+  SearchPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -76,14 +74,14 @@ class _SearchPageState extends State<SearchPage> {
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
                   children: [
-                    GridTile(child: new GridItem()),
-                    GridTile(child: new GridItem()),
-                    GridTile(child: new GridItem()),
-                    GridTile(child: new GridItem()),
-                    GridTile(child: new GridItem()),
-                    GridTile(child: new GridItem()),
-                    GridTile(child: new GridItem()),
-                    GridTile(child: new GridItem()),
+                    //GridTile(child: new ProductItem()),
+                    //GridTile(child: new ProductItem()),
+                    //GridTile(child: new ProductItem()),
+                    //GridTile(child: new ProductItem()),
+                    //GridTile(child: new ProductItem()),
+                    //GridTile(child: new ProductItem()),
+                    //GridTile(child: new ProductItem()),
+                    //GridTile(child: new ProductItem()),
                   ]),
             ),
     ),

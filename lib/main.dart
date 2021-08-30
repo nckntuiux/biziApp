@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:superellipse_shape/superellipse_shape.dart';
-
 import 'assets/styles.dart';
 import 'assets/strings.dart';
 
@@ -13,7 +11,7 @@ int _selectedBottomIndex = 0;
 void main() {
   SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
   runApp(LunatexApp());
-  imageCache.clear();
+  imageCache!.clear();
 }
 
 class LunatexApp extends StatelessWidget {

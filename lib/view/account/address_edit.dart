@@ -109,7 +109,7 @@ class _AddressChangePageState extends State<AddressChangePage> {
     );
   }
 
-  Widget _buildBar(BuildContext context) {
+  PreferredSizeWidget _buildBar(BuildContext context) {
     return new AppBar(
       title: new Text("Изменить данные"),
       centerTitle: true,

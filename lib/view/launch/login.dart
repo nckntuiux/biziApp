@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildBar(BuildContext context) {
+  PreferredSizeWidget _buildBar(BuildContext context) {
     return new AppBar(
       title: new Text("Войти в аккаунт"),
       centerTitle: true,

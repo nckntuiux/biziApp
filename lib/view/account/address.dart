@@ -4,15 +4,13 @@ import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 import 'package:ltx_deliver/items.dart';
 import 'package:ltx_deliver/view/account/address_edit.dart';
 
-import 'package:superellipse_shape/superellipse_shape.dart';
-
 import '../../assets/styles.dart';
 import '../../assets/strings.dart';
 
 class AddressPage extends StatefulWidget {
-  AddressPage({Key key, this.title}) : super(key: key);
+  AddressPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _AddressPageState createState() => _AddressPageState();

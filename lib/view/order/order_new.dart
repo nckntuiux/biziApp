@@ -3,15 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 import 'package:ltx_deliver/items.dart';
 
-import 'package:superellipse_shape/superellipse_shape.dart';
-
 import '../../assets/styles.dart';
 import '../../assets/strings.dart';
 
 class NewOrderPage extends StatefulWidget {
-  NewOrderPage({Key key, this.title}) : super(key: key);
+  NewOrderPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   bool _hasBeenPressed = false;
 
@@ -23,7 +21,7 @@ class _NewOrderPageState extends State<NewOrderPage> {
 
   String _finishHeader = "Проверьте адрес";
   String _finishAlt = "Нажмите для выбора правильного";
-  MaterialButton _orderButton;
+  MaterialButton? _orderButton;
 
 
   @override
@@ -104,7 +102,7 @@ class _NewOrderPageState extends State<NewOrderPage> {
     setState(() {
       _finishHeader = "Cпасибо за заказ!";
       _finishAlt = "Ищем водителя поблизости";
-      _orderButton = MaterialButton();
+      _orderButton = MaterialButton(onPressed: () => {});
     });
   }
 }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:ltx_deliver/assets/styles.dart';
+import 'package:ltx_deliver/ltx.dart';
 import 'package:ltx_deliver/view/account/address_edit.dart';
 import 'package:ltx_deliver/view/item.dart';
 
-class GridItemState extends State<GridItem> {
+//Элемент сетки главного экрана
+class ProductItemState extends State<ProductItem> {
+  bool inCart = false; //Товаров в корзине
+  Product product;
 
-  bool inCart = false;     //Товаров в корзине
+  ProductItemState(this.product);
 
   void _onAddItemPressed() {
     Navigator.push(
@@ -15,14 +19,17 @@ class GridItemState extends State<GridItem> {
     );
   }
 
-  Widget _buildButtons() {                    //DEPRECATED!! Перестраивает кнопки в карточке, оставил на всякий
+  /*DEPRECATED!! Перестраивает кнопки в карточке, оставил на всякий
+  Widget _buildButtons() {
     if (!inCart) {
       new Container(
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
           child: new FlatButton(
             onPressed: () => _onAddItemPressed(),
-            child: SizedBox(width: double.infinity, child: Text("*Ценовой диапазон*", style: sButton)),
+            child: SizedBox(
+                width: double.infinity,
+                child: Text("*Ценовой диапазон*", style: sButton)),
             height: 48,
             color: Colors.grey[200],
           ),
@@ -35,7 +42,9 @@ class GridItemState extends State<GridItem> {
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
           child: new FlatButton(
             onPressed: () => _onAddItemPressed(),
-            child: SizedBox(width: double.infinity, child: Text("*Ценовой диапазон*", style: sButtonLight)),
+            child: SizedBox(
+                width: double.infinity,
+                child: Text("*Ценовой диапазон*", style: sButtonLight)),
             height: 48,
             color: brandRGB0[900],
           ),
@@ -43,12 +52,13 @@ class GridItemState extends State<GridItem> {
         margin: EdgeInsets.all(4.0),
       );
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {             //TODO: Обработка нажатия на элемент
+      onTap: () {
+        //TODO: Обработка нажатия на элемент
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ItemPage()),
@@ -62,24 +72,37 @@ class GridItemState extends State<GridItem> {
                 width: double.infinity,
                 //padding: EdgeInsets.only(right: 15),
                 //margin: EdgeInsets.only(right: 15),
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(16.0))),
-                child: Image(fit: BoxFit.fitHeight, image: AssetImage('assets/fake/fake.png'), width: double.infinity,) //TODO: ПОФИКСИТЬ КАРТИНКУ!!!
-            ),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                child: Image(
+                  fit: BoxFit.fitHeight,
+                  image: AssetImage('assets/fake/fake.png'),
+                  width: double.infinity,
+                ) //TODO: ПОФИКСИТЬ КАРТИНКУ!!!
+                ),
           ),
-          new Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Container(
-              margin: EdgeInsets.only(top: 6.0, bottom: 6.0, right: 6.0),
-              padding: EdgeInsets.all(6.0),
-              decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.all(Radius.circular(16.0))),
-              child: new Text("12-15 шт/уп"),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 6.0, bottom: 6.0),
-              padding: EdgeInsets.all(6.0),
-              decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.all(Radius.circular(16.0))),
-              child: new Text("99 цветов"),
-            ),
-          ],),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 6.0, bottom: 6.0, right: 6.0),
+                padding: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                child: new Text("12-15 шт/уп"),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 6.0, bottom: 6.0),
+                padding: EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                child: new Text("99 цветов"),
+              ),
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -88,11 +111,17 @@ class GridItemState extends State<GridItem> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(2.0),
-                  child: new Text("Поплин", style: sHeading,),
+                  child: new Text(
+                    product.name,
+                    style: sHeading,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(2.0),
-                  child: new Text("Полисатин 85 гр.", style: sAlt,),
+                  child: new Text(
+                    "Полисатин 85 гр.",
+                    style: sAlt,
+                  ),
                 ),
               ],
             ),
@@ -104,8 +133,11 @@ class GridItemState extends State<GridItem> {
                 onPressed: () => _onAddItemPressed(),
                 child: SizedBox(
                     width: double.infinity,
-                    child: Center(child: Text("*Стоимость товара*", style: sButton))      //TODO: Изменить цвет и надпись динамически от выбранных в корзине товаров
-                ),
+                    child: Center(
+                        child: Text("*Стоимость товара*",
+                            style:
+                                sButton)) //TODO: Изменить цвет и надпись динамически от выбранных в корзине товаров
+                    ),
                 height: 48,
                 color: Colors.grey[200],
               ),
@@ -116,11 +148,10 @@ class GridItemState extends State<GridItem> {
       ),
     );
   }
+}
 
-}       //Элемент сетки главного экрана
-
-class SizeItemState extends State<SizeItem> {
-  
+//DEPRECATED!! Элемент списка главного экрана
+class OptionItemState extends State<OptionItem> {
   int inCart = 0;
 
   void _onItemInGridTapped() {
@@ -129,7 +160,7 @@ class SizeItemState extends State<SizeItem> {
       MaterialPageRoute(builder: (context) => ItemPage()),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -146,15 +177,16 @@ class SizeItemState extends State<SizeItem> {
             Column(
               children: [
                 new Container(
-                  width: 81,
-                  height: 81,
-                  padding: EdgeInsets.only(right: 15, left: 15),
-                  //margin: EdgeInsets.only(right: 15),
-                  child: Image(fit: BoxFit.fitHeight,image: AssetImage('assets/fake/fake.png'))
-                ),
+                    width: 81,
+                    height: 81,
+                    padding: EdgeInsets.only(right: 15, left: 15),
+                    //margin: EdgeInsets.only(right: 15),
+                    child: Image(
+                        fit: BoxFit.fitHeight,
+                        image: AssetImage('assets/fake/fake.png'))),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: new Text("В корзине: "+inCart.toString()),
+                  child: new Text("В корзине: " + inCart.toString()),
                 ),
               ],
             ),
@@ -164,12 +196,22 @@ class SizeItemState extends State<SizeItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 6.0,),
-                    child: new Text("Размер", style: sHeading,),
+                    padding: const EdgeInsets.only(
+                      bottom: 6.0,
+                    ),
+                    child: new Text(
+                      "Размер",
+                      style: sHeading,
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 6.0,),
-                    child: new Text("Пододеяльник 200/220\nПростыня  200/220\nНаволочки 2шт   70/70", style: sAlt,),
+                    padding: const EdgeInsets.only(
+                      bottom: 6.0,
+                    ),
+                    child: new Text(
+                      "Пододеяльник 200/220\nПростыня  200/220\nНаволочки 2шт   70/70",
+                      style: sAlt,
+                    ),
                   ),
                 ],
               ),
@@ -179,11 +221,10 @@ class SizeItemState extends State<SizeItem> {
       ),
     );
   }
-  
-}       //DEPRECATED!! Элемент списка главного экрана
+}
 
+//Элемент списка адресов
 class AddressItemState extends State<AddressItem> {
-
   String btnName = "Сделать основным";
 
   void _onDefaultPressed() {
@@ -191,7 +232,7 @@ class AddressItemState extends State<AddressItem> {
       btnName = "Основной";
     });
   }
-  
+
   void _onEditPressed() {
     Navigator.push(
       context,
@@ -202,13 +243,13 @@ class AddressItemState extends State<AddressItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          boxShadow: [ BoxShadow(
-            color: Colors.black.withOpacity(0.03),
-            blurRadius: 28.8,
-            spreadRadius: 2.0,
-          )]
-      ),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.03),
+          blurRadius: 28.8,
+          spreadRadius: 2.0,
+        )
+      ]),
       child: new Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
@@ -220,7 +261,10 @@ class AddressItemState extends State<AddressItem> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
-                child: Container(child: new AddressTextItem(), width: double.infinity,),
+                child: Container(
+                  child: new AddressTextItem(),
+                  width: double.infinity,
+                ),
               ),
               new Row(
                 children: [
@@ -228,12 +272,28 @@ class AddressItemState extends State<AddressItem> {
                     padding: const EdgeInsets.only(right: 8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                      child: new FlatButton(onPressed: _onEditPressed, child: new Text("Изменить", style: sButton,), color: Colors.grey[200], height: 48,),
+                      child: new FlatButton(
+                        onPressed: _onEditPressed,
+                        child: new Text(
+                          "Изменить",
+                          style: sButton,
+                        ),
+                        color: Colors.grey[200],
+                        height: 48,
+                      ),
                     ),
                   ),
                   ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    child: new FlatButton(onPressed: _onDefaultPressed, child: new Text(btnName, style: sButton,), color: Colors.grey[200], height: 48,),
+                    child: new FlatButton(
+                      onPressed: _onDefaultPressed,
+                      child: new Text(
+                        btnName,
+                        style: sButton,
+                      ),
+                      color: Colors.grey[200],
+                      height: 48,
+                    ),
                   ),
                 ],
               )
@@ -243,21 +303,29 @@ class AddressItemState extends State<AddressItem> {
       ),
     );
   }
-}       //Элемент списка адресов
-
-class GridItem extends StatefulWidget {
-  @override
-  createState() => new GridItemState();
-}                   //Виджеты с
-class SizeItem extends StatefulWidget {
-  @override
-  createState() => new SizeItemState();
 }
+
+//Виджеты с
+class ProductItem extends StatefulWidget {
+  final Product product;
+
+  ProductItem(this.product);
+
+  @override
+  createState() => new ProductItemState(product);
+}
+
+class OptionItem extends StatefulWidget {
+  @override
+  createState() => new OptionItemState();
+}
+
 class AddressItem extends StatefulWidget {
   @override
   createState() => new AddressItemState();
 }
 
+//DEPRECATED!! Элемент списка корзины
 class ListItemCompact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -268,17 +336,28 @@ class ListItemCompact extends StatelessWidget {
             height: 61,
             padding: EdgeInsets.only(right: 15),
             //margin: EdgeInsets.only(right: 15),
-            child: Image.asset('assets/fake/fake.png', width: 61, height: 61,fit: BoxFit.fitHeight,)),
+            child: Image.asset(
+              'assets/fake/fake.png',
+              width: 61,
+              height: 61,
+              fit: BoxFit.fitHeight,
+            )),
         new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
-              child: new Text("2499 ₽ | Полутороспальный (1.5)", style: sAlt,),
+              child: new Text(
+                "2499 ₽ | Полутороспальный (1.5)",
+                style: sAlt,
+              ),
             ),
             new Row(
               children: [
-                new Text("Сатин Люкс+", style: sHeading,),
+                new Text(
+                  "Сатин Люкс+",
+                  style: sHeading,
+                ),
                 new Text("2 шт.", style: sHeadingCompact),
               ],
             )
@@ -287,7 +366,8 @@ class ListItemCompact extends StatelessWidget {
       ],
     );
   }
-}           //DEPRECATED!! Элемент списка корзины
+}
+
 class AddressTextItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -296,15 +376,17 @@ class AddressTextItem extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 4.0),
-          child: new Text("Офис (Основной адрес)", style: sHeading,),
+          child: new Text(
+            "Офис (Основной адрес)",
+            style: sHeading,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
-          child: new Text("Кантемировская ул., 47А, корп. 2, стр. 6,\nМосква, Россия\nПолучатель: Первышин Михаил Анатольевич \n+7 (904) 371-48-57"),
+          child: new Text(
+              "Кантемировская ул., 47А, корп. 2, стр. 6,\nМосква, Россия\nПолучатель: Первышин Михаил Анатольевич \n+7 (904) 371-48-57"),
         ),
       ],
     );
   }
-}           //Элемент текстового описания адреса
-
-
+} //Элемент текстового описания адреса

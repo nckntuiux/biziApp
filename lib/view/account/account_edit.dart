@@ -98,7 +98,7 @@ class _LoginChangePageState extends State<LoginChangePage> {
     );
   }
 
-  Widget _buildBar(BuildContext context) {
+  PreferredSizeWidget _buildBar(BuildContext context) {
     return new AppBar(
       title: new Text("Изменить данные"),
       centerTitle: true,

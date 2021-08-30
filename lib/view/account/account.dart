@@ -4,16 +4,14 @@ import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 import 'package:ltx_deliver/view/account/account_edit.dart';
 import 'package:ltx_deliver/view/order/account_orders.dart';
 
-import 'package:superellipse_shape/superellipse_shape.dart';
-
 import '../../assets/styles.dart';
 import '../../assets/strings.dart';
 import 'address.dart';
 
 class AccountPage extends StatefulWidget {
-  AccountPage({Key key, this.title}) : super(key: key);
+  AccountPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _AccountPageState createState() => _AccountPageState();

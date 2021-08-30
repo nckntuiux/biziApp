@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ltx_deliver/items.dart';
 
-import 'package:superellipse_shape/superellipse_shape.dart';
-
 import '../../assets/styles.dart';
 import '../../assets/strings.dart';
 
 class SetBudgetPage extends StatefulWidget {
-  SetBudgetPage({Key key, this.title}) : super(key: key);
+  SetBudgetPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _SetBudgetPageState createState() => _SetBudgetPageState();
