@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(length: 5, vsync: this, initialIndex: 0);
+    _tabController = new TabController(length: 4, vsync: this, initialIndex: 0);
     _tabController!.addListener(_setActiveTabIndex);
     _onBottomItemTapped(0);
   }
