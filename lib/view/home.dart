@@ -37,11 +37,11 @@ class _MyHomePageState extends State<MyHomePage>
   final List<Widget> _children = [];
 
   void _setActiveTabIndex() {
-    _currentIndex = _tabController.index;
+    _currentIndex = _tabController!.index;
   }
 
   int getTabControllerIndex() {
-    return _tabController.index;
+    return _tabController!.index;
   }
 
   void _onBottomItemTapped(int index) {
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     _tabController = new TabController(length: 5, vsync: this, initialIndex: 0);
-    _tabController.addListener(_setActiveTabIndex);
+    _tabController!.addListener(_setActiveTabIndex);
     _onBottomItemTapped(0);
   }
 
