@@ -6,7 +6,7 @@ import 'assets/strings.dart';
 
 import 'view/home.dart';
 
-int _selectedBottomIndex = 0;
+int _selectedBottomIndex = 1;
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
