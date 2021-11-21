@@ -23,26 +23,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  RefreshController _refreshController1 =
-      RefreshController(initialRefresh: false);
-  RefreshController _refreshController2 =
-      RefreshController(initialRefresh: false);
-  RefreshController _refreshController3 =
-      RefreshController(initialRefresh: false);
-  RefreshController _refreshController4 =
-      RefreshController(initialRefresh: false);
-  TabController? _tabController;
-  int _currentIndex = 0;
-  final List<Widget> _children = [];
-
-  void _setActiveTabIndex() {
-    _currentIndex = _tabController!.index;
-  }
-
-  int getTabControllerIndex() {
-    return _tabController!.index;
-  }
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin{
+  final List<RefreshController> _rcs = [
+    RefreshController(initialRefresh: false),
+    RefreshController(initialRefresh: false),
+    RefreshController(initialRefresh: false),
+    RefreshController(initialRefresh: false),
+  ];
+  late TabController _tabController;
 
   void _onBottomItemTapped(int index) {
     setState(() {
@@ -91,8 +79,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(length: 4, vsync: this, initialIndex: 0);
-    _tabController!.addListener(_setActiveTabIndex);
+    _tabController = new TabController(length: 4, vsync: this);
     _onBottomItemTapped(0);
   }
 
@@ -100,10 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
     // monitor network fetch
     await Future.delayed(Duration(milliseconds: 1000));
     // if failed,use refreshFailed()
-    _refreshController1.refreshCompleted();
-    _refreshController2.refreshCompleted();
-    _refreshController3.refreshCompleted();
-    _refreshController4.refreshCompleted();
+    _rcs[_tabController.index].refreshCompleted();
   }
 
   void _onLoading() async {
@@ -112,16 +96,13 @@ class _MyHomePageState extends State<MyHomePage>
     // if failed,use loadFailed(),if no data return,use LoadNodata()
 
     if (mounted) setState(() {});
-    _refreshController1.loadComplete();
-    _refreshController2.loadComplete();
-    _refreshController3.loadComplete();
-    _refreshController4.loadComplete();
+    _rcs[_tabController.index].refreshCompleted();
   }
 
-  Widget _buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context, int category) {
     final client = LtxClient(Dio(BaseOptions(contentType: "application/json")));
     return FutureBuilder<List<Product>>(
-      future: client.getProducts(),
+      future: client.getProductsByCategory(category),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return new GridView.builder(
@@ -134,7 +115,8 @@ class _MyHomePageState extends State<MyHomePage>
               crossAxisSpacing: 10.0,
             ),
             itemBuilder: (BuildContext context, int index) {
-              return new GridTile(child: new ProductItem(snapshot.data![index]));
+              return new GridTile(
+                  child: new ProductItem(snapshot.data![index]));
             },
           );
         } else {
@@ -172,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage>
                 indicatorColor: Colors.black,
                 indicatorPadding:
                     EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
+                controller: _tabController,
                 tabs: [
                   Tab(
                     child: Text('Недавние'),
@@ -186,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage>
                     child: Text('Одеяла'),
                   ),
                 ]),
+
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 4.0),
@@ -250,12 +234,12 @@ class _MyHomePageState extends State<MyHomePage>
                 padding: EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
                 child: Center(
                   child: SmartRefresher(
-                    controller: _refreshController1,
+                    controller: _rcs[0],
                     enablePullUp: true,
                     header: ClassicHeader(),
                     onRefresh: _onRefresh,
                     onLoading: _onLoading,
-                    child: _buildBody(context),
+                    child: _buildBody(context, 2),
                   ),
                 ),
               ),
@@ -263,39 +247,36 @@ class _MyHomePageState extends State<MyHomePage>
                 padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: SmartRefresher(
-                    controller: _refreshController2,
-                    enablePullUp: true,
-                    header: ClassicHeader(),
-                    onRefresh: _onRefresh,
-                    onLoading: _onLoading,
-                      child: _buildBody(context)
-                  ),
+                      controller: _rcs[1],
+                      enablePullUp: true,
+                      header: ClassicHeader(),
+                      onRefresh: _onRefresh,
+                      onLoading: _onLoading,
+                      child: _buildBody(context, 2)),
                 ),
               ),
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: SmartRefresher(
-                    controller: _refreshController3,
-                    enablePullUp: true,
-                    header: ClassicHeader(),
-                    onRefresh: _onRefresh,
-                    onLoading: _onLoading,
-                    child: _buildBody(context)
-                  ),
+                      controller: _rcs[2],
+                      enablePullUp: true,
+                      header: ClassicHeader(),
+                      onRefresh: _onRefresh,
+                      onLoading: _onLoading,
+                      child: _buildBody(context, 1)),
                 ),
               ),
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: SmartRefresher(
-                    controller: _refreshController4,
-                    enablePullUp: true,
-                    header: ClassicHeader(),
-                    onRefresh: _onRefresh,
-                    onLoading: _onLoading,
-                    child: _buildBody(context)
-                  ),
+                      controller: _rcs[3],
+                      enablePullUp: true,
+                      header: ClassicHeader(),
+                      onRefresh: _onRefresh,
+                      onLoading: _onLoading,
+                      child: _buildBody(context, 3)),
                 ),
               ),
             ],

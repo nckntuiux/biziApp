@@ -15,7 +15,7 @@ class ProductItemState extends State<ProductItem> {
   void _onAddItemPressed() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ItemPage()),
+      MaterialPageRoute(builder: (context) => ItemPage(product: product)),
     );
   }
 
@@ -61,7 +61,7 @@ class ProductItemState extends State<ProductItem> {
         //TODO: Обработка нажатия на элемент
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ItemPage()),
+          MaterialPageRoute(builder: (context) => ItemPage(product: product,)),
         );
       },
       child: new Wrap(
@@ -119,7 +119,8 @@ class ProductItemState extends State<ProductItem> {
                 Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: new Text(
-                    "Полисатин 85 гр.",
+                    product.description,
+                    //product.description.split("\n")[0],
                     style: sAlt,
                   ),
                 ),
@@ -150,14 +151,19 @@ class ProductItemState extends State<ProductItem> {
   }
 }
 
-//DEPRECATED!! Элемент списка главного экрана
+//Элемент списка главного экрана
 class OptionItemState extends State<OptionItem> {
   int inCart = 0;
+
+  Option option;
+  Product product;
+
+  OptionItemState(this.option, this.product);
 
   void _onItemInGridTapped() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ItemPage()),
+      MaterialPageRoute(builder: (context) => ItemPage(product: product)),
     );
   }
 
@@ -167,7 +173,7 @@ class OptionItemState extends State<OptionItem> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ItemPage()),
+          MaterialPageRoute(builder: (context) => ItemPage(product: product)),
         );
       },
       child: new Container(
@@ -200,7 +206,7 @@ class OptionItemState extends State<OptionItem> {
                       bottom: 6.0,
                     ),
                     child: new Text(
-                      "Размер",
+                      option.name,
                       style: sHeading,
                     ),
                   ),
@@ -209,7 +215,7 @@ class OptionItemState extends State<OptionItem> {
                       bottom: 6.0,
                     ),
                     child: new Text(
-                      "Пододеяльник 200/220\nПростыня  200/220\nНаволочки 2шт   70/70",
+                      option.description,
                       style: sAlt,
                     ),
                   ),
@@ -222,6 +228,7 @@ class OptionItemState extends State<OptionItem> {
     );
   }
 }
+
 
 //Элемент списка адресов
 class AddressItemState extends State<AddressItem> {
@@ -316,8 +323,13 @@ class ProductItem extends StatefulWidget {
 }
 
 class OptionItem extends StatefulWidget {
+  final Option option;
+  final Product product;
+
+  OptionItem(this.option, this.product);
+
   @override
-  createState() => new OptionItemState();
+  createState() => new OptionItemState(option, product);
 }
 
 class AddressItem extends StatefulWidget {

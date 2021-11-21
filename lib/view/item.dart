@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
+import 'package:ltx_deliver/ltx.dart';
 import 'package:ltx_deliver/main.dart';
 import 'package:ltx_deliver/view/launch/login.dart';
 import 'package:ltx_deliver/items.dart';
@@ -10,21 +11,22 @@ import '../assets/styles.dart';
 import '../assets/strings.dart';
 import 'order/order_new.dart';
 
-String faketext =
-    "Ткань: Поплин\nСостав: 100% Хлопок\nПлотность: 130гр/м\nТип наволочки: «Клапан»\nТип пододеяльника: На молнии\nШвы: Прямострочка, Оверлок";
-
 
 class ItemPage extends StatefulWidget {
-  ItemPage({Key? key, this.title}) : super(key: key);
+  final Product? product;
 
-  final String? title;
-  final Widget sizeItem = new OptionItem();
+  ItemPage({Key? key, this.product}) : super(key: key);
+
 
   @override
-  _ItemPageState createState() => _ItemPageState();
+  _ItemPageState createState() => _ItemPageState(product!);
 }
 
 class _ItemPageState extends State<ItemPage> {
+  Product product;
+
+  _ItemPageState(this.product);
+
   int inCart = 0;
 
 // Счетчик товаров в корзине, сделано через жопу
@@ -72,9 +74,9 @@ class _ItemPageState extends State<ItemPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(12.0)),
             child: new FlatButton(
-              onPressed: () => _onAddItemPressed(1),
+              onPressed: () => _onAddItemPressed(-1),
               child: Text(
-                "+",
+                "-",
                 style: sButton,
               ),
               minWidth: 54,
@@ -96,9 +98,9 @@ class _ItemPageState extends State<ItemPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(12.0)),
             child: new FlatButton(
-              onPressed: () => _onAddItemPressed(-1),
+              onPressed: () => _onAddItemPressed(1),
               child: Text(
-                "-",
+                "+",
                 style: sButton,
               ),
               minWidth: 54,
@@ -121,7 +123,6 @@ class _ItemPageState extends State<ItemPage> {
               Navigator.pop(context);
             },
             icon: Icon(SFSymbols.multiply)),
-        //title: Text('Название товара', style: sAppBarText,),
         elevation: 0,
         brightness: Brightness.light,
         actions: <Widget>[
@@ -173,7 +174,7 @@ class _ItemPageState extends State<ItemPage> {
                                       bottom: 6.0,
                                     ),
                                     child: new Text(
-                                      "Сатин «Эконом» Евро 2н",
+                                      product.name,
                                       style: sHeading,
                                     ),
                                   ),
@@ -183,10 +184,10 @@ class _ItemPageState extends State<ItemPage> {
                           ),
                         ),
                         new Divider(),
-                        new OptionItem(),
-                        new OptionItem(),
-                        Container(color: Colors.black12, child: new OptionItem()),
-                        new OptionItem(),
+                        new OptionItem(product.options[0], product),
+                        new OptionItem(product.options[0], product),
+                        Container(color: Colors.black12, child: new OptionItem(product.options[0], product)),
+                        new OptionItem(product.options[0], product),
                         new Divider(),
                         new Container(
                           margin: EdgeInsets.all(8.0),
@@ -207,7 +208,7 @@ class _ItemPageState extends State<ItemPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: new Text(
-                            faketext,
+                            product.description,
                             style: sAlt,
                           ),
                         )

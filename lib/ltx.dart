@@ -15,6 +15,9 @@ abstract class LtxClient {
   @GET("/products")
   Future<List<Product>> getProducts();
 
+  @GET("/products/{category}")
+  Future<List<Product>> getProductsByCategory(@Path("category") int category);
+
   @GET('cache')
   @CacheControl(
       maxAge: 180,
