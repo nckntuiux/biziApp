@@ -11,15 +11,13 @@ import '../assets/styles.dart';
 import '../assets/strings.dart';
 import 'order/order_new.dart';
 
-
 class ItemPage extends StatefulWidget {
-  final Product? product;
+  final Product product;
 
-  ItemPage({Key? key, this.product}) : super(key: key);
-
+  ItemPage({Key? key, required this.product}) : super(key: key);
 
   @override
-  _ItemPageState createState() => _ItemPageState(product!);
+  _ItemPageState createState() => _ItemPageState(product);
 }
 
 class _ItemPageState extends State<ItemPage> {
@@ -143,76 +141,78 @@ class _ItemPageState extends State<ItemPage> {
                 Container(
                   child: Expanded(
                     child: new ListView(
-                      children: [
-                        new Container(
-                          margin: EdgeInsets.all(8.0),
-                          child: new Row(
-                            children: [
-                              new Container(
-                                  width: 81,
-                                  height: 81,
-                                  padding: EdgeInsets.only(right: 15),
-                                  //margin: EdgeInsets.only(right: 15),
-                                  child: Image(
-                                      fit: BoxFit.fitHeight,
-                                      image:
-                                          AssetImage('assets/fake/fake.png'))),
-                              new Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                            new Container(
+                              margin: EdgeInsets.all(8.0),
+                              child: new Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      bottom: 6.0,
-                                    ),
-                                    child: new Text(
-                                      "2499 ₽",
-                                      style: sAlt,
-                                    ),
+                                  new Container(
+                                      width: 81,
+                                      height: 81,
+                                      padding: EdgeInsets.only(right: 15),
+                                      //margin: EdgeInsets.only(right: 15),
+                                      child: Image(
+                                          fit: BoxFit.fitHeight,
+                                          image: AssetImage(
+                                              'assets/fake/fake.png'))),
+                                  new Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 6.0,
+                                        ),
+                                        child: new Text(
+                                          "2499 ₽",
+                                          style: sAlt,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 6.0,
+                                        ),
+                                        child: new Text(
+                                          product.name,
+                                          style: sHeading,
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                ],
+                              ),
+                            ),
+                            new Divider()
+                          ] + //Container(color: Colors.black12, child: new OptionItem(0, product)),
+                          product.options
+                              .map((option) => new OptionItem(option, product))
+                              .toList() +
+                          [
+                            new Divider(),
+                            new Container(
+                              margin: EdgeInsets.all(8.0),
+                              child: new Row(
+                                children: [
+                                  _buildButtons(),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                      bottom: 6.0,
-                                    ),
+                                    padding: const EdgeInsets.only(left: 16.0),
                                     child: new Text(
-                                      product.name,
-                                      style: sHeading,
+                                      "По 5 шт. в упаковке",
+                                      style: sAlt,
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ),
-                        new Divider(),
-                        new OptionItem(product.options[0], product),
-                        new OptionItem(product.options[0], product),
-                        Container(color: Colors.black12, child: new OptionItem(product.options[0], product)),
-                        new OptionItem(product.options[0], product),
-                        new Divider(),
-                        new Container(
-                          margin: EdgeInsets.all(8.0),
-                          child: new Row(
-                            children: [
-                              _buildButtons(),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 16.0),
-                                child: new Text(
-                                  "По 5 шт. в упаковке",
-                                  style: sAlt,
-                                ),
+                            ),
+                            new Divider(),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: new Text(
+                                product.description,
+                                style: sAlt,
                               ),
-                            ],
-                          ),
-                        ),
-                        new Divider(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: new Text(
-                            product.description,
-                            style: sAlt,
-                          ),
-                        )
-                      ],
+                            )
+                          ],
                     ),
                   ),
                 ),
