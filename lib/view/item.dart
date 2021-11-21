@@ -21,9 +21,10 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
-  Product product;
+  final Product product;
+  Option mainOption;
 
-  _ItemPageState(this.product);
+  _ItemPageState(this.product): mainOption = product.options[0];
 
   int inCart = 0;
 
@@ -31,11 +32,11 @@ class _ItemPageState extends State<ItemPage> {
   void _onAddItemPressed(int addedItems) {
     if (addedItems == 1) {
       setState(() {
-        inCart++;
+        inCart += mainOption.packSize;
       });
     } else if (addedItems <= -1) {
       setState(() {
-        inCart--;
+        inCart -= mainOption.packSize;
       });
     } else if (addedItems > 1) {
       setState(() {
@@ -164,7 +165,7 @@ class _ItemPageState extends State<ItemPage> {
                                           bottom: 6.0,
                                         ),
                                         child: new Text(
-                                          "2499 ₽",
+                                          "${mainOption.price} ₽",
                                           style: sAlt,
                                         ),
                                       ),
@@ -183,9 +184,10 @@ class _ItemPageState extends State<ItemPage> {
                               ),
                             ),
                             new Divider()
-                          ] + //Container(color: Colors.black12, child: new OptionItem(0, product)),
+                          ] +
                           product.options
-                              .map((option) => new OptionItem(option, product))
+                              .map((option) =>
+                                  new OptionItem(option, product, () => {mainOption = option}))
                               .toList() +
                           [
                             new Divider(),
@@ -197,7 +199,7 @@ class _ItemPageState extends State<ItemPage> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 16.0),
                                     child: new Text(
-                                      "По 5 шт. в упаковке",
+                                      "По ${mainOption.packSize} шт. в упаковке",
                                       style: sAlt,
                                     ),
                                   ),

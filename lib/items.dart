@@ -155,27 +155,28 @@ class ProductItemState extends State<ProductItem> {
 class OptionItemState extends State<OptionItem> {
   int inCart = 0;
 
-  Option option;
-  Product product;
+  final Option option;
+  final Product product;
+  final void Function() setMainOption;
 
-  OptionItemState(this.option, this.product);
+
+  OptionItemState(this.option, this.product, this.setMainOption);
 
   void _onItemInGridTapped() {
+    setMainOption();
+    //Container(color: Colors.black12, child: ,)
+    /*
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ItemPage(product: product)),
     );
+     */
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ItemPage(product: product)),
-        );
-      },
+      onTap: _onItemInGridTapped,
       child: new Container(
         margin: EdgeInsets.all(8.0),
         child: new Row(
@@ -325,11 +326,12 @@ class ProductItem extends StatefulWidget {
 class OptionItem extends StatefulWidget {
   final Option option;
   final Product product;
+  final void Function() setMainOption;
 
-  OptionItem(this.option, this.product);
+  OptionItem(this.option, this.product, this.setMainOption);
 
   @override
-  createState() => new OptionItemState(option, product);
+  createState() => new OptionItemState(option, product, setMainOption);
 }
 
 class AddressItem extends StatefulWidget {
